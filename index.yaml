@@ -1,0 +1,198 @@
+apiVersion: v1
+entries:
+  amd-gpu-device-plugin:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:31.881186699Z"
+    description: A Helm chart for Kubernetes
+    digest: 9af705b6bc1d526452b386a24cc3cb3f16f5061b17d39dc346d28caeb486626b
+    name: amd-gpu-device-plugin
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/amd-gpu-device-plugin-0.1.0/amd-gpu-device-plugin-0.1.0.tgz
+    version: 0.1.0
+  arr:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:31.972511904Z"
+    description: A Helm chart for Kubernetes
+    digest: c1919f139783c4dddae9899745acd8302173e182da48c4d4cb07c3677f1e97b1
+    name: arr
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.0/arr-0.1.0.tgz
+    version: 0.1.0
+  chatterbox-tts-server:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:32.098680917Z"
+    description: A Helm chart for Kubernetes
+    digest: a791fdb99453b2f7dd84d9510a18e1f8a5ef201612d8d9e1c1fa909ea0c770c8
+    name: chatterbox-tts-server
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/chatterbox-tts-server-0.1.0/chatterbox-tts-server-0.1.0.tgz
+    version: 0.1.0
+  cloudflared:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:32.225781818Z"
+    description: A Helm chart for Kubernetes
+    digest: 5f9faf194fa8b80d72d8eb65619db9a9a74825dd217c4512b3f9eb1864b534de
+    name: cloudflared
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/cloudflared-0.1.0/cloudflared-0.1.0.tgz
+    version: 0.1.0
+  comfyui:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:32.374062558Z"
+    description: A Helm chart for Kubernetes
+    digest: 06605ac671fcde724f060b162ef5c8f62aa0a936d7556fd516de5fe4dcc9e9ed
+    name: comfyui
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/comfyui-0.1.0/comfyui-0.1.0.tgz
+    version: 0.1.0
+  downloaders:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:32.471880559Z"
+    description: A Helm chart for Kubernetes
+    digest: cfd5454ed0093beb1a5c346064d6fe2a20d0cc48d825ca16621efe7f99e50d41
+    name: downloaders
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/downloaders-0.1.0/downloaders-0.1.0.tgz
+    version: 0.1.0
+  fenrir:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:32.582159018Z"
+    description: A Helm chart for Kubernetes
+    digest: aba40049a8084cc36c2a1f9e6274bf0a03478205df4a1132ab1d7075748f9402
+    name: fenrir
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/fenrir-0.1.0/fenrir-0.1.0.tgz
+    version: 0.1.0
+  healthcheck-operator:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:32.717399843Z"
+    description: A Helm chart for Kubernetes
+    digest: dc7eb65d500561604ecb17151bcd8953d4c296ebacb4092e1041e2777c78054f
+    name: healthcheck-operator
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/healthcheck-operator-0.1.0/healthcheck-operator-0.1.0.tgz
+    version: 0.1.0
+  homebridge:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:32.842688769Z"
+    description: A Helm chart for Kubernetes
+    digest: f2b926138be51c22772bcc8f171c09eda3277505282bc53c61e1062308205cd7
+    name: homebridge
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/homebridge-0.1.0/homebridge-0.1.0.tgz
+    version: 0.1.0
+  jupyterhub-ingress:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:32.939292173Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://hub.jupyter.org/helm-chart/
+      version: 4.2.0
+    description: A Helm chart for Kubernetes
+    digest: 7f633a61dfa724b4be8f157eff3c1cfa8e5e2e276de909d8d6e39c8c51b80305
+    name: jupyterhub-ingress
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/jupyterhub-ingress-0.1.0/jupyterhub-ingress-0.1.0.tgz
+    version: 0.1.0
+  matrix-synapse:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:33.069320234Z"
+    description: A Helm chart for Kubernetes
+    digest: bef13c3445393e39753bd82c85aa16538950925ce8bb54c55b71242904583c73
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/matrix-synapse-0.1.0/matrix-synapse-0.1.0.tgz
+    version: 0.1.0
+  open-webui-ingress:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:33.238726757Z"
+    dependencies:
+    - name: open-webui
+      repository: https://helm.openwebui.com/
+      version: 6.19.0
+    description: A Helm chart for Kubernetes
+    digest: a960a15adec7d423de91ea717275a5d27002b2ba422487375e91341b5016bd2a
+    name: open-webui-ingress
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/open-webui-ingress-0.1.0/open-webui-ingress-0.1.0.tgz
+    version: 0.1.0
+  openreader-webui:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:33.365882254Z"
+    description: A Helm chart for Kubernetes
+    digest: cae49b5a681e6c3ae115917bba2d8eb713b477e6d1f9ee37cd11e810d57acaab
+    name: openreader-webui
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/openreader-webui-0.1.0/openreader-webui-0.1.0.tgz
+    version: 0.1.0
+  rockchip-npu-device-plugin:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:33.495326887Z"
+    description: A Helm chart for Kubernetes
+    digest: e0799273aafe797f1a76e9db103ba3bf12418325e17ce93380dbfc4928d16440
+    name: rockchip-npu-device-plugin
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/rockchip-npu-device-plugin-0.1.0/rockchip-npu-device-plugin-0.1.0.tgz
+    version: 0.1.0
+  rockchip-vpu-device-plugin:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:33.618719736Z"
+    description: A Helm chart for Kubernetes
+    digest: 599a6c8b23828c36f5b97786fdfb1568535bfe0859f1d2dd5c027d3b649a6fe4
+    name: rockchip-vpu-device-plugin
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/rockchip-vpu-device-plugin-0.1.0/rockchip-vpu-device-plugin-0.1.0.tgz
+    version: 0.1.0
+  widefrog-download:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:33.723645319Z"
+    description: A Helm chart for Kubernetes
+    digest: 6c8871195bd427384fe2b2e4f67d42a5fc97a71a26c490d616687a0ecfb8b39b
+    name: widefrog-download
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/widefrog-download-0.1.0/widefrog-download-0.1.0.tgz
+    version: 0.1.0
+  zigbee2mqtt:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-28T22:37:33.853685957Z"
+    description: A Helm chart for Kubernetes
+    digest: 3a930d4953e4dca220ce43345c365e2ee14d93f0851540210660464f89118cdf
+    name: zigbee2mqtt
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-07-28T22:37:33.853693882Z"
