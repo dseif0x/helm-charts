@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatterbox
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chatterbox
+  template:
+    metadata:
+      labels:
+        app: chatterbox
+    spec:
+      runtimeClassName: nvidia
+      tolerations:
+        - key: "nvidia.com/gpu"
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: chatterbox
+          image: ghcr.io/dseif0x/chatterbox-tts-server:latest
+          ports:
+            - containerPort: 8004
+          env:
+            - name: HF_HUB_ENABLE_HF_TRANSFER
+              value: "1"
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: all
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: compute,utility
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+          volumeMounts:
+            - mountPath: /app/hf_cache
+              name: hf-cache
+            - name: config-volume
+              mountPath: /config/
+              readOnly: true
+      volumes:
+        - name: hf-cache
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-hf-cache-pvc
+        - name: config-volume
+          configMap:
+            name: tts-config
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: chatterbox-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: chatterbox
+  ports:
+  - name: http
+    port: 8004
+    protocol: TCP
+    targetPort: 8004

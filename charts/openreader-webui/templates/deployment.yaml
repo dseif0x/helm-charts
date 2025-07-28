@@ -1,0 +1,65 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: openreader-docstore
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: nfs-fast
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openreader-webui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openreader-webui
+  template:
+    metadata:
+      labels:
+        app: openreader-webui
+    spec:
+      containers:
+        - name: openreader
+          image: ghcr.io/richardr1126/openreader-webui:0.3.0-patch.1
+          ports:
+            - containerPort: 3003
+          volumeMounts:
+            - mountPath: /app/docstore
+              name: docstore-volume
+          env:
+            - name: API_BASE
+              value: {{ .Values.apiBase | quote }}
+          resources:
+            requests:
+              memory: "150Mi"
+              cpu: "100m"
+            limits:
+              memory: "300Mi"
+              cpu: "250m"
+      volumes:
+        - name: docstore-volume
+          persistentVolumeClaim:
+            claimName: openreader-docstore
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openreader-webui
+spec:
+  selector:
+    app: openreader-webui
+  ports:
+    - protocol: TCP
+      port: 3003
+      targetPort: 3003
+      name: http
+  type: ClusterIP

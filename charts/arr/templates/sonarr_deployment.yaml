@@ -1,0 +1,56 @@
+# sonarr_deployment.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: sonarr-config-pvc}
+spec: 
+  storageClassName: nfs-fast
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 4Gi}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: sonarr}
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector: {matchLabels: {app: sonarr}}
+  template:
+    metadata: {labels: {app: sonarr}}
+    spec:
+      securityContext: {runAsUser: 1000, runAsGroup: 1000}
+      containers:
+        - name: sonarr
+          image: lscr.io/linuxserver/sonarr:latest
+          env:
+            - {name: PUID, value: "1000"}
+            - {name: PGID, value: "1000"}
+            - {name: TZ,   value: "Europe/Vienna"}
+          ports: [{containerPort: 8989}]
+          volumeMounts:
+            - {name: config,  mountPath: /config}
+            - {name: nfs, mountPath: /downloads, subPath: torrents}
+            - {name: nfs, mountPath: /usenet,   subPath: nzbget/done}
+            - {name: nfs, mountPath: /hdd_huge_shows, subPath: shows}
+          resources:
+            requests:
+              memory: "262Mi"
+              cpu: "100m"
+            limits:
+              memory: "450Mi"
+              cpu: "200m"
+      volumes:
+        - {name: config, persistentVolumeClaim: {claimName: sonarr-config-pvc}}
+        - name: nfs
+          nfs:
+            server: cp0.seifert.id
+            path: /mnt/hdd_huge/
+---
+apiVersion: v1
+kind: Service
+metadata: {name: sonarr}
+spec:
+  selector: {app: sonarr}
+  ports: [{port: 8989, targetPort: 8989, name: http}]
+  type: ClusterIP

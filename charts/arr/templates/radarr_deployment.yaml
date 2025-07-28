@@ -1,0 +1,56 @@
+# radarr_deployment.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: radarr-config-pvc}
+spec: 
+  storageClassName: nfs-fast
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 4Gi}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: radarr}
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector: {matchLabels: {app: radarr}}
+  template:
+    metadata: {labels: {app: radarr}}
+    spec:
+      securityContext: {runAsUser: 1000, runAsGroup: 1000}
+      containers:
+        - name: radarr
+          image: lscr.io/linuxserver/radarr:latest
+          env:
+            - {name: PUID, value: "1000"}
+            - {name: PGID, value: "1000"}
+            - {name: TZ,   value: "Europe/Vienna"}
+          ports: [{containerPort: 7878}]
+          volumeMounts:
+            - {name: config, mountPath: /config}
+            - {name: nfs, mountPath: /downloads, subPath: torrents}
+            - {name: nfs, mountPath: /usenet,   subPath: nzbget/done}
+            - {name: nfs, mountPath: /hdd_huge_movies, subPath: movies}
+          resources:
+            requests:
+              memory: "262Mi"
+              cpu: "100m"
+            limits:
+              memory: "450Mi"
+              cpu: "200m"
+      volumes:
+        - {name: config, persistentVolumeClaim: {claimName: radarr-config-pvc}}
+        - name: nfs
+          nfs:
+            server: cp0.seifert.id
+            path: /mnt/hdd_huge/
+---
+apiVersion: v1
+kind: Service
+metadata: {name: radarr}
+spec:
+  selector: {app: radarr}
+  ports: [{port: 7878, targetPort: 7878, name: http}]
+  type: ClusterIP

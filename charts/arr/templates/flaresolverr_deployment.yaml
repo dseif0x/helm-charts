@@ -1,0 +1,38 @@
+# flaresolverr_deployment.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: flaresolverr}
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector: {matchLabels: {app: flaresolverr}}
+  template:
+    metadata: {labels: {app: flaresolverr}}
+    spec:
+      securityContext: {runAsUser: 1000, runAsGroup: 1000}
+      containers:
+        - name: flaresolverr
+          image: ghcr.io/flaresolverr/flaresolverr:latest
+          env:
+            - {name: LOG_LEVEL,  value: "info"}
+            - {name: LOG_HTML,   value: "false"}
+            - {name: CAPTCHA_SOLVER, value: "none"}
+            - {name: TZ, value: "Europe/Vienna"}
+          ports: [{containerPort: 8191}]
+          resources:
+            requests:
+              memory: "410Mi"
+              cpu: "100m"
+            limits:
+              memory: "744Mi"
+              cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata: {name: flaresolverr}
+spec:
+  selector: {app: flaresolverr}
+  ports: [{port: 8191, targetPort: 8191}]
+  type: ClusterIP

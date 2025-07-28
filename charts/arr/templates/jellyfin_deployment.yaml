@@ -1,0 +1,72 @@
+# jellyfin_deployment.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: jellyfin-config-pvc}
+spec:
+  storageClassName: nfs-fast
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 4Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: jellyfin-cache-pvc}
+spec:
+  storageClassName: nfs-fast
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests: {storage: 6Gi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: jellyfin}
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels: {app: jellyfin}
+  template:
+    metadata:
+      labels: {app: jellyfin}
+    spec:
+      #nodeSelector:
+      #  kubernetes.io/hostname: brute
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        supplementalGroups: [109, 44]
+      containers:
+        - name: jellyfin
+          image: jellyfin/jellyfin:10.11.0-rc3
+          ports: [{containerPort: 8096}]
+          volumeMounts:
+            - {name: config, mountPath: /config}
+            - {name: cache,  mountPath: /cache}
+            - {name: media,  mountPath: /hdd_huge_media, readOnly: true}
+          resources:
+            requests:
+              memory: "1000Mi"
+              cpu: "100m"
+            limits:
+              memory: "10000Mi"
+              cpu: "8000m"
+              amd.com/gpu: 1
+      volumes:
+        - {name: config,  persistentVolumeClaim: {claimName: jellyfin-config-pvc}}
+        - {name: cache,   persistentVolumeClaim: {claimName: jellyfin-cache-pvc}}
+        - name: media
+          nfs:
+            server: cp0.seifert.id
+            path: /mnt/hdd_huge/
+            readOnly: true
+---
+apiVersion: v1
+kind: Service
+metadata: {name: jellyfin}
+spec:
+  selector: {app: jellyfin}
+  ports: [{port: 8096, targetPort: 8096, name: http}]
+  type: ClusterIP

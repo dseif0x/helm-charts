@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comfyui
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comfyui
+  template:
+    metadata:
+      labels:
+        app: comfyui
+    spec:
+      runtimeClassName: nvidia
+      tolerations:
+        - key: "nvidia.com/gpu"
+          operator: Exists
+          effect: NoSchedule
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: comfyui
+          image: yanwk/comfyui-boot:cu124-slim
+          ports:
+            - containerPort: 8188
+          env:
+            - name: SERVICEPORTAL_URL
+              value: https://{{ .Values.domain }}
+            - name: SERVICENAME_URL
+              value: https://{{ .Values.domain }}
+            - name: COMFYUI_URL
+              value: https://{{ .Values.domain }}
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+          volumeMounts:
+            - mountPath: /root
+              name: models-volume
+      volumes:
+        - name: models-volume
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-models-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: comfyui-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: comfyui
+  ports:
+  - name: http
+    port: 8188
+    protocol: TCP
+    targetPort: 8188

@@ -1,0 +1,37 @@
+domain: jupyterhub.homelab.seifert.id
+
+jupyterhub:
+  proxy:
+    service: 
+      type: ClusterIP
+  hub:
+    db:
+      pvc:
+        storageClassName: "nfs-fast"
+    revisionHistoryLimit:
+    config:
+      KubeSpawner:
+        extra_pod_config:
+          runtimeClassName: nvidia
+      Authenticator:
+        admin_users:
+          - dan
+      DummyAuthenticator:
+        password: a-shared-secret-password
+      JupyterHub:
+        authenticator_class: dummy
+
+  singleuser:
+    extraTolerations:
+      - key: "nvidia.com/gpu"
+        operator: Exists
+        effect: NoSchedule
+    extraResource:
+      limits:
+        nvidia.com/gpu: 1  
+    storage:
+      dynamic:
+        storageClass: "nfs-fast"
+    image:
+      name: ghcr.io/dseif0x/jupyter-singleuser-conda
+      tag: latest

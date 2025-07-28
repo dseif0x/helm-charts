@@ -1,0 +1,49 @@
+# prowlarr_deployment.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: prowlarr-config-pvc}
+spec: 
+  storageClassName: nfs-fast
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 3Gi}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: prowlarr}
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector: {matchLabels: {app: prowlarr}}
+  template:
+    metadata: {labels: {app: prowlarr}}
+    spec:
+      securityContext: {runAsUser: 1000, runAsGroup: 1000}
+      containers:
+        - name: prowlarr
+          image: lscr.io/linuxserver/prowlarr:latest
+          env:
+            - {name: PUID, value: "1000"}
+            - {name: PGID, value: "1000"}
+            - {name: TZ,   value: "Europe/Vienna"}
+          ports: [{containerPort: 9696}]
+          volumeMounts:
+            - {name: config, mountPath: /config}
+          resources:
+            requests:
+              memory: "351Mi"
+              cpu: "100m"
+            limits:
+              memory: "638Mi"
+              cpu: "200m"
+      volumes:
+        - {name: config, persistentVolumeClaim: {claimName: prowlarr-config-pvc}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: prowlarr}
+spec:
+  selector: {app: prowlarr}
+  ports: [{port: 9696, targetPort: 9696, name: http}]
+  type: ClusterIP

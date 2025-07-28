@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: deluge-config-pvc}
+spec: 
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 3Gi}}
+  storageClassName: nfs-fast
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deluge
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels: {app: deluge}
+  template:
+    metadata:
+      labels: {app: deluge}
+    spec:
+      # All containers in the pod share this network namespace
+      volumes:
+        - {name: config, persistentVolumeClaim: {claimName: deluge-config-pvc}}
+        - name: nfs
+          nfs:
+            server: cp0.seifert.id
+            path: /mnt/hdd_huge/
+      containers:
+      # ──► 1. VPN side-car
+      - name: gluetun
+        image: qmcgaw/gluetun
+        securityContext:
+          capabilities:
+            add:
+              - "NET_ADMIN"              # Required to configure interfaces/ip-tables
+        env:
+          - name: DOT
+            value: "off"
+          - name: VPN_SERVICE_PROVIDER
+            value: "nordvpn"
+          - name: VPN_TYPE
+            value: "wireguard"
+          - name: SERVER_COUNTRIES
+            value: "Austria"
+          - name: WIREGUARD_PRIVATE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: nord-private-key
+                key: PRIVATE_KEY
+          - name: SERVER_CATEGORIES
+            value: "P2P"
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "25m"
+          limits:
+            memory: "200Mi"
+            cpu: "200m"
+      - name: deluge
+        image: linuxserver/deluge:latest
+        env:
+          - {name: PUID, value: "1000"}
+          - {name: PGID, value: "1000"}
+          - {name: TZ,   value: Europe/Vienna}
+        ports:
+          - containerPort: 8112
+        volumeMounts:
+          - {name: nfs, mountPath: /downloads, subPath: torrents}
+          - {name: config,     mountPath: /config}
+        resources:
+          requests:
+            memory: "131Mi"
+            cpu: "100m"
+          limits:
+            memory: "200Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata: {name: deluge}
+spec:
+  selector: {app: deluge}
+  ports: [{port: 8112, targetPort: 8112, name: http}]
+  type: ClusterIP

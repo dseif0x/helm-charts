@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: sabnzbd-config-pvc}
+spec: 
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 3Gi}}
+  storageClassName: nfs-fast
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sabnzbd
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels: {app: sabnzbd}
+  template:
+    metadata:
+      labels: {app: sabnzbd}
+    spec:
+      # All containers in the pod share this network namespace
+      volumes:
+        - {name: config, persistentVolumeClaim: {claimName: sabnzbd-config-pvc}}
+        - name: nfs
+          nfs:
+            server: cp0.seifert.id
+            path: /mnt/hdd_huge/
+      containers:
+      # ──► 1. VPN side-car
+      - name: gluetun
+        image: qmcgaw/gluetun
+        securityContext:
+          capabilities:
+            add:
+              - "NET_ADMIN"              # Required to configure interfaces/ip-tables
+        env:
+          - name: DOT
+            value: "off"
+          - name: VPN_SERVICE_PROVIDER
+            value: "nordvpn"
+          - name: VPN_TYPE
+            value: "wireguard"
+          - name: SERVER_COUNTRIES
+            value: "Austria"
+          - name: WIREGUARD_PRIVATE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: nord-private-key
+                key: PRIVATE_KEY
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "25m"
+          limits:
+            memory: "200Mi"
+            cpu: "200m"
+      - name: sabnzbd
+        image: lscr.io/linuxserver/sabnzbd:latest
+        env:
+          - {name: PUID, value: "1000"}
+          - {name: PGID, value: "1000"}
+          - {name: TZ,   value: Europe/Vienna}
+        ports:
+          - containerPort: 8080
+        volumeMounts:
+          - {name: nfs, mountPath: /downloads, subPath: nzbget/done}
+          - {name: nfs, mountPath: /incomplete-downloads, subPath: nzbget/running}
+          - {name: config,     mountPath: /config}
+        resources:
+          requests:
+            memory: "131Mi"
+            cpu: "100m"
+          limits:
+            memory: "2000Mi"
+            cpu: "1000m"
+---
+apiVersion: v1
+kind: Service
+metadata: {name: sabnzbd}
+spec:
+  selector: {app: sabnzbd}
+  ports: [{port: 8080, targetPort: 8080, name: http}]
+  type: ClusterIP

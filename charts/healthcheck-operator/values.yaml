@@ -1,0 +1,4 @@
+baseUrl: "https://health.seifert.id/api/v3"
+projectName: "k8s-homelab"
+
+extraResources:

@@ -1,0 +1,9 @@
+sessions:
+  storageClassName: "nfs-fast"
+
+externalHostname: "moonlight.homelab.seifert.id"
+wolfImage: "ghcr.io/games-on-whales/wolf:stable"
+wolfAgentImage: "ghcr.io/dseif0x/wolf-agent:main"
+
+operatorImage: "ghcr.io/dseif0x/operator:main"
+proxyImage: "ghcr.io/dseif0x/moonlight-proxy:main"

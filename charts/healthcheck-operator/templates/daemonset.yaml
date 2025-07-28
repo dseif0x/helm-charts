@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-healthcheck
+spec:
+  selector:
+    matchLabels:
+      app: node-healthcheck
+  template:
+    metadata:
+      labels:
+        app: node-healthcheck
+    spec:
+      containers:
+        - name: register-and-ping
+          image: ghcr.io/dseif0x/healthcheck-agent:latest
+          imagePullPolicy: Always
+          env:
+            - name: BASE_URL
+              value: {{ .Values.baseUrl | quote }}
+            - name: PROJECT_SLUG
+              value: {{ .Values.projectName | quote }}
+            - name: CHECK_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          volumeMounts:
+            - name: api-token
+              mountPath: /etc/healthchecks
+              readOnly: true
+      tolerations:
+        - key: "zigbee"
+          operator: "Equal"
+          value: "only"
+          effect: "NoSchedule"
+        - key: "nvidia.com/gpu"
+          operator: Exists
+          effect: NoSchedule
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: healthcheck.io/exclude
+                    operator: NotIn
+                    values:
+                      - "true"
+      volumes:
+        - name: api-token
+          secret:
+            secretName: healthchecks-api-token

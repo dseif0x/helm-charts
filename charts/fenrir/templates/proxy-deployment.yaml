@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: direwolf-moonlight-proxy
+  labels:
+    app: direwolf
+    component: moonlight-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: direwolf
+      component: moonlight-proxy
+  template:
+    metadata:
+      labels:
+        app: direwolf
+        component: moonlight-proxy
+    spec:
+      serviceAccountName: direwolf-moonlight-proxy
+      containers:
+        - name: moonlight-proxy
+          image: {{ .Values.proxyImage | default "ghcr.io/games-on-whales/moonlight-proxy:main" }}
+          imagePullPolicy: Always
+          args:
+          - --tls-cert=/etc/certs/tls.crt
+          - --tls-key=/etc/certs/tls.key
+          ports:
+          - containerPort: 47984
+          - containerPort: 47989
+          env:
+          # Useful for debugging pairing to skip constant PIN screens.
+          # Requires modified moonlight client.
+          #- name: HARDCODED_PIN
+          #  value: "1111"
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          volumeMounts:
+          - name: certs
+            mountPath: /etc/certs
+            readOnly: true
+      volumes:
+      - name: certs
+        secret:
+          secretName: fenrir-tls

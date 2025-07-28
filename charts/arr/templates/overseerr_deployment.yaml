@@ -1,0 +1,49 @@
+# overseerr_deployment.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: overseerr-config-pvc}
+spec: 
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 3Gi}}
+  storageClassName: nfs-fast
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: overseerr}
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector: {matchLabels: {app: overseerr}}
+  template:
+    metadata: {labels: {app: overseerr}}
+    spec:
+      securityContext: {runAsUser: 1000, runAsGroup: 1000}
+      containers:
+        - name: overseerr
+          image: fallenbagel/jellyseerr:latest
+          env:
+            - {name: PUID, value: "1000"}
+            - {name: PGID, value: "1000"}
+            - {name: TZ,   value: "Europe/Vienna"}
+          ports: [{containerPort: 5055}]
+          volumeMounts:
+            - {name: config, mountPath: /app/config}
+          resources:
+            requests:
+              memory: "351Mi"
+              cpu: "100m"
+            limits:
+              memory: "638Mi"
+              cpu: "200m"
+      volumes:
+        - {name: config, persistentVolumeClaim: {claimName: overseerr-config-pvc}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: overseerr}
+spec:
+  selector: {app: overseerr}
+  ports: [{port: 5055, targetPort: 5055, name: http}]
+  type: ClusterIP

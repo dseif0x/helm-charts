@@ -1,0 +1,61 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: widefrog-download-{{ include "urlParamsHash" . }}
+spec:
+  template:
+    metadata:
+      annotations:
+        kubernetes.io/ingress-bandwidth: "15M"
+    spec:
+      initContainers:
+        - name: copy-config
+          image: busybox
+          command: ["sh", "-c", "cp -L /secrets/* /app/app_files/"]
+          volumeMounts:
+            - name: config-volume
+              mountPath: /secrets
+              readOnly: true
+            - name: writable-app-files
+              mountPath: /app/app_files
+      containers:
+        - workingDir: /app
+          {{- if .Values.params }}
+          command:
+            - "python"
+            - "widefrog.py"
+            - {{ .Values.url | quote }}
+            {{- range .Values.params }}
+            {{- range $key, $val := . }}
+            - "--{{ $key }}={{ $val }}"
+            {{- end }}
+            {{- end }}
+          {{- else }}
+          command:
+            - "python"
+            - "widefrog.py"
+            - {{ .Values.url | quote }}
+          {{- end }}
+          image: ghcr.io/dseif0x/widefrog:latest
+          imagePullPolicy: Always
+          name: download
+          volumeMounts:
+            - name: media
+              mountPath: /app/media
+            - name: writable-app-files
+              mountPath: /app/app_files
+          resources:
+            requests:
+              cpu: "1000m"
+            limits:
+              cpu: "3000m"
+      volumes:
+        - name: config-volume
+          secret:
+            secretName: widefrog-config
+        - name: writable-app-files
+          emptyDir: {}
+        - name: media
+          persistentVolumeClaim:
+            claimName: widefrog-{{ include "urlParamsHash" . }}
+      restartPolicy: Never
