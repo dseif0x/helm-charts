@@ -35,3 +35,4 @@ jupyterhub:
     image:
       name: ghcr.io/dseif0x/jupyter-singleuser-conda
       tag: latest
+
