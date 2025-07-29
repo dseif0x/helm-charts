@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: libspeedtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: libspeedtest
+  template:
+    metadata:
+      labels:
+        app: libspeedtest
+    spec:
+      containers:
+      - image: ghcr.io/librespeed/speedtest:latest
+        imagePullPolicy: Always
+        name: libspeedtest
+        ports:
+        - containerPort: 80
+          protocol: TCP
+          name: http
+        env:
+        - name: MODE
+          value: "standalone"
+        - name: WEBPORT
+          value: "80"
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "200Mi"
+            cpu: "200m"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: libspeedtest-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: libspeedtest
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
