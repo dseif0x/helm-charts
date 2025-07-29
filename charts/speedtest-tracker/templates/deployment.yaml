@@ -1,0 +1,60 @@
+# speedtest-tracker_deployment.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: speedtest-tracker-config-pvc}
+spec:
+  storageClassName: nfs-fast
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: speedtest-tracker}
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels: {app: speedtest-tracker}
+  template:
+    metadata:
+      labels: {app: speedtest-tracker}
+    spec:
+      securityContext: 
+        fsGroup: 1000
+      containers:
+        - name: speedtest-tracker
+          image: lscr.io/linuxserver/speedtest-tracker:1.6.2
+          env:
+            - {name: APP_TIMEZONE,  value: "Europe/Vienna"}
+            - {name: TZ,            value: "Europe/Vienna"}
+            - {name: PUID,          value: "1000"}
+            - {name: PGID,          value: "1000"}
+            - {name: DB_CONNECTION, value: "sqlite"}
+            - {name: APP_KEY,       value: "base64:O89XIZSkx9Ha46MO6kUpcyWvZAeZVkrs0RQ+Cs34l3s="}
+            - {name: SPEEDTEST_SCHEDULE, value: "0 0,12 * * *"}
+          ports:
+            - {containerPort: 80}
+          volumeMounts:
+            - {name: config, mountPath: /config}
+          resources:
+            requests:
+              memory: "262Mi"
+              cpu: "100m"
+            limits:
+              memory: "408Mi"
+              cpu: "200m"
+      volumes:
+        - {name: config, persistentVolumeClaim: {claimName: speedtest-tracker-config-pvc}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: speedtest-tracker}
+spec:
+  selector: {app: speedtest-tracker}
+  ports:
+    - {port: 80, targetPort: 80, name: http}
+  type: ClusterIP
