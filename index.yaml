@@ -102,6 +102,24 @@ entries:
   homepage:
   - apiVersion: v2
     appVersion: v1.4.0
+    created: "2025-07-29T15:10:03.118535231Z"
+    description: homepage helm chart for Kubernetes
+    digest: 5b4eaf9db3791f64fddb0a85e98467b61a5e0a497a03e573c4879588b429aee4
+    home: https://github.com/gethomepage/homepage
+    icon: https://artifacthub.io/image/e417b561-5fe4-4ee3-9b89-f67df4069169
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - email: ludovic.ortega@adminafk.fr
+      name: Ludovic Ortega
+    name: homepage
+    sources:
+    - https://github.com/M0NsTeRRR/helm-charts/tree/main/charts/homepage
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/homepage-4.1.1/homepage-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: v1.4.0
     created: "2025-07-28T23:37:58.935277404Z"
     description: homepage helm chart for Kubernetes
     digest: 2a8c55f9d39f2348bc06cfd3e2017c1a82b19fabf064661a0f3cb8a80cea261e
@@ -214,4 +232,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-28T23:37:58.935288556Z"
+generated: "2025-07-29T15:10:03.118546061Z"
