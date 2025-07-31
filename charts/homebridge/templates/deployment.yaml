@@ -30,7 +30,8 @@ spec:
       hostNetwork: true
       containers:
         - name: homebridge
-          image: homebridge/homebridge:latest
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ .Values.image.name | quote }}
           env:
             - name: TZ
               value: "Europe/Vienna"
