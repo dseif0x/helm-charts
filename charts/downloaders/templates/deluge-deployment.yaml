@@ -59,7 +59,7 @@ spec:
             memory: "200Mi"
             cpu: "200m"
       - name: deluge
-        image: linuxserver/deluge:latest
+        image: {{ .Values.deluge.image }}
         env:
           - {name: PUID, value: "1000"}
           - {name: PGID, value: "1000"}

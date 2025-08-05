@@ -1,3 +1,9 @@
 baseDomain: dl.homelab.seifert.id
 
+deluge:
+  image: linuxserver/deluge:latest
+
+sabnzbd:
+  image: lscr.io/linuxserver/sabnzbd:latest
+
 extraResources:

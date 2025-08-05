@@ -57,7 +57,7 @@ spec:
             memory: "200Mi"
             cpu: "200m"
       - name: sabnzbd
-        image: lscr.io/linuxserver/sabnzbd:latest
+        image: {{ .Values.sabnzbd.image }}
         env:
           - {name: PUID, value: "1000"}
           - {name: PGID, value: "1000"}
