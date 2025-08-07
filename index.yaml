@@ -14,6 +14,16 @@ entries:
   arr:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-08-07T11:59:04.044922321Z"
+    description: A Helm chart for Kubernetes
+    digest: f1fa089e89066b9b1f62befdfa2e530cd06b819e3e6ef0259b4ea6610fcf9137
+    name: arr
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.1/arr-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-07-28T22:37:31.972511904Z"
     description: A Helm chart for Kubernetes
     digest: c1919f139783c4dddae9899745acd8302173e182da48c4d4cb07c3677f1e97b1
@@ -284,4 +294,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2025-08-05T16:55:30.946839724Z"
+generated: "2025-08-07T11:59:04.044951718Z"
