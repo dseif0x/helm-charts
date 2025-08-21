@@ -1,2 +1,3 @@
 domain: comfy.homelab.seifert.id
 baseDomain: homelab.seifert.id
+image: yanwk/comfyui-boot:cu124-slim-20250818

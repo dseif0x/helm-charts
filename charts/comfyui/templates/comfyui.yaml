@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
         - name: comfyui
-          image: yanwk/comfyui-boot:cu124-slim
+          image: {{ .Values.image }}
           ports:
             - containerPort: 8188
           env:
