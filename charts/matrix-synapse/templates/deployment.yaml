@@ -38,12 +38,7 @@ spec:
               name: http
               protocol: TCP
           resources:
-            requests:
-              memory: "200Mi"
-              cpu: "100m"
-            limits:
-              memory: "400Mi"
-              cpu: "250m"
+            {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: synapse-storage
           persistentVolumeClaim:
