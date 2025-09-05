@@ -1,1 +1,9 @@
 domain: matrix.homelab.seifert.id
+
+resources:
+  requests:
+    memory: "200Mi"
+    cpu: "100m"
+  limits:
+    memory: "1000Mi"
+    cpu: "250m"
