@@ -3,6 +3,16 @@ entries:
   acp-ups-controller:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-09-15T12:20:18.813474633Z"
+    description: A Helm chart for Kubernetes
+    digest: 3a4f874ef822d7e39f89443ddd886d428563ae51819e350bda7f25378449f42a
+    name: acp-ups-controller
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/acp-ups-controller-0.1.6/acp-ups-controller-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-09-15T12:19:04.717267889Z"
     description: A Helm chart for Kubernetes
     digest: 44ca4885ea42ec7da2bbc27a0ba15fc0c1de65fc92806bac81fb5a630e1ddeee
@@ -375,4 +385,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-15T12:19:04.717305199Z"
+generated: "2025-09-15T12:20:18.813532302Z"
