@@ -14,7 +14,6 @@ spec:
       labels:
         app: k8s-ups-drainer
     spec:
-      serviceAccountName: k8s-ups-drainer
       containers:
       - name: k8s-ups-drainer
         image: {{ .Values.controller.image }}
