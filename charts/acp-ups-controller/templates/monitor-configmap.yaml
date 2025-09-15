@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k8s-ups-monitor-config
+data:
+  ACPHOST: {{ .Values.ups.host }}
+  MQTT_BROKER: {{ .Values.mqtt.broker }}
+  MQTT_CLIENT_ID: "{{ .Values.mqtt.clientId }}-monitor"
+  MQTT_TOPIC: {{ .Values.mqtt.topic }}
+  POLL_INTERVAL: "{{ .Values.ups.batterThreshold }}"

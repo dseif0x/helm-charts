@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-ups-drainer
+  labels:
+    app: k8s-ups-drainer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-ups-drainer
+  template:
+    metadata:
+      labels:
+        app: k8s-ups-drainer
+    spec:
+      containers:
+      - name: k8s-ups-drainer
+        image: {{ .Values.controller.image }}
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: k8s-ups-drainer-config
+        - secretRef:
+            name: mqtt-config-secret
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 65534
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+      restartPolicy: Always

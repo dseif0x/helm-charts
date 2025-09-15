@@ -1,0 +1,16 @@
+extraResources:
+
+controller:
+  image: ghcr.io/dseif0x/acpups-mqtt-controller:latest
+
+monitor:
+  image: ghcr.io/dseif0x/acpups-mqtt:latest
+
+mqtt:
+  topic: "ups/status"
+  broker: "tcp://mqtt-broker:1883"
+  clientId: "k8s-ups-drainer"
+
+ups:
+  batterThreshold: 50
+  host: "10.13.1.187:3551"
