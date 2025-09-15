@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-ups-drainer
+  name: k8s-ups-monitor
   labels:
     app: k8s-ups-monitor
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: k8s-ups-drainer
+      app: k8s-ups-monitor
   template:
     metadata:
       labels:
-        app: k8s-ups-drainer
+        app: k8s-ups-monitor
     spec:
       containers:
-      - name: k8s-ups-drainer
+      - name: k8s-ups-monitor
         image: {{ .Values.controller.image }}
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: k8s-ups-drainer-config
+            name: k8s-ups-monitor-config
         - secretRef:
             name: mqtt-config-secret
         resources:
