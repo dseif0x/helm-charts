@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: k8s-ups-monitor
-        image: {{ .Values.controller.image }}
+        image: {{ .Values.monitor.image }}
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
