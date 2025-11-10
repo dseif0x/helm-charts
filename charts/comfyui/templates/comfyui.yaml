@@ -37,11 +37,41 @@ spec:
               nvidia.com/gpu: 1
           volumeMounts:
             - mountPath: /root
+              name: root-volume
+            - mountPath: /root/ComfyUI/models
               name: models-volume
+            - mountPath: /root/.cache/huggingface/hub
+              name: hf-cache-volume
+            - mountPath: /root/.cache/torch/hub
+              name: torch-cache-volume
+            - mountPath: /root/ComfyUI/input
+              name: input-volume
+            - mountPath: /root/ComfyUI/output
+              name: output-volume
+            - mountPath: /root/ComfyUI/user/default/workflows
+              name: workflows-volume
       volumes:
+        - name: root-volume
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-root-pvc
         - name: models-volume
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-models-pvc
+        - name: hf-cache-volume
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-hf-cache-pvc
+        - name: torch-cache-volume
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-torch-cache-pvc
+        - name: input-volume
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-input-pvc
+        - name: output-volume
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-output-pvc
+        - name: workflows-volume
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-workflows-pvc
 ---
 kind: Service
 apiVersion: v1
