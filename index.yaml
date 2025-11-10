@@ -128,6 +128,16 @@ entries:
   comfyui:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-11-10T14:51:13.249122374Z"
+    description: A Helm chart for Kubernetes
+    digest: 4855d30a5c0fc197915b689efac9de8b4d76b27d56bf28645c6f7ef811277fd6
+    name: comfyui
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/comfyui-0.1.2/comfyui-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-08-21T12:16:50.769245095Z"
     description: A Helm chart for Kubernetes
     digest: a618de9c0ff3487f041f77208912b6aa7849d2a0da3cbf6a0f15111e0188a235
@@ -395,4 +405,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-15T18:20:40.166840966Z"
+generated: "2025-11-10T14:51:13.249167659Z"
