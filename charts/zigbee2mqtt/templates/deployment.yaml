@@ -38,7 +38,7 @@ spec:
           effect: "NoSchedule"
       containers:
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt
+          image: {{ .Values.image }}
           securityContext:
             privileged: true
             capabilities:

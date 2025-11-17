@@ -1,1 +1,2 @@
 domain: z2m.homelab.seifert.id
+image: koenkk/zigbee2mqtt:2.6
