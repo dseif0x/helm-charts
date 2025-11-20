@@ -22,7 +22,7 @@ spec:
       securityContext: {runAsUser: 1000, runAsGroup: 1000}
       containers:
         - name: sonarr
-          image: lscr.io/linuxserver/sonarr:latest
+          image: {{ .Values.sonarr.image }}
           env:
             - {name: PUID, value: "1000"}
             - {name: PGID, value: "1000"}

@@ -22,7 +22,7 @@ spec:
       securityContext: {runAsUser: 1000, runAsGroup: 1000}
       containers:
         - name: overseerr
-          image: fallenbagel/jellyseerr:latest
+          image: {{ .Values.overseerr.image }}
           env:
             - {name: PUID, value: "1000"}
             - {name: PGID, value: "1000"}

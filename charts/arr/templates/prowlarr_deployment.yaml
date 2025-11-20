@@ -22,7 +22,7 @@ spec:
       securityContext: {runAsUser: 1000, runAsGroup: 1000}
       containers:
         - name: prowlarr
-          image: lscr.io/linuxserver/prowlarr:latest
+          image: {{ .Values.prowlarr.image }}
           env:
             - {name: PUID, value: "1000"}
             - {name: PGID, value: "1000"}
