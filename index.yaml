@@ -232,6 +232,16 @@ entries:
   homebridge:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-12-16T14:34:15.714815286Z"
+    description: A Helm chart for Kubernetes
+    digest: 60465e844808ae1a34f4fb3975d2045330e892e5c58492e64db71e376d22a2bb
+    name: homebridge
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/homebridge-0.1.2/homebridge-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-07-31T09:16:40.161097607Z"
     description: A Helm chart for Kubernetes
     digest: d60da376296d04af0b8711dcc13019e76bd952818ba114dd8b34f475e504784c
@@ -435,4 +445,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-11T12:32:57.731668182Z"
+generated: "2025-12-16T14:34:15.714865452Z"
