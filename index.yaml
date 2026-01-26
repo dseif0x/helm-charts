@@ -74,6 +74,16 @@ entries:
   aiclient2api:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-01-26T14:20:25.014370439Z"
+    description: A Helm chart for Kubernetes
+    digest: da810d3eb50ec6c6e2ab8a982af348e1fb8a25da8b53b1f4c17861ea57f2f03d
+    name: aiclient2api
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/aiclient2api-0.1.2/aiclient2api-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-01-26T14:16:56.421321308Z"
     description: A Helm chart for Kubernetes
     digest: 5b5e8e302c748882fd847916397b8495bfec3bfc837593724891ca96737e1463
@@ -466,4 +476,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-26T14:16:56.421383385Z"
+generated: "2026-01-26T14:20:25.014440561Z"
