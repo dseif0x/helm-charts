@@ -1,0 +1,52 @@
+{{- if .Values.copilot_api.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: copilot-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: copilot-api
+  template:
+    metadata:
+      labels:
+        app: copilot-api
+    spec:
+      containers:
+      - image: {{ .Values.image }}
+        imagePullPolicy: Always
+        name: copilot-api
+        ports:
+        - containerPort: 4141
+          protocol: TCP
+          name: http
+        volumeMounts:
+        - name: copilot-api-storage
+          mountPath: /root/.local/share/copilot-api
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "200Mi"
+            cpu: "200m"
+      volumes:
+        - name: copilot-api-storage
+          persistentVolumeClaim:
+            claimName: copilot-api-data
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: copilot-api-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: copilot-api
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 4141
+{{- end }}

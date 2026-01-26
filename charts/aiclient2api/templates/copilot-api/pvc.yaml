@@ -1,0 +1,13 @@
+{{- if .Values.copilot_api.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copilot-api-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-fast
+  resources:
+    requests:
+      storage: 1Gi
+{{- end }}

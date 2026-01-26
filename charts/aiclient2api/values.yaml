@@ -1,2 +1,6 @@
 image: justlikemaki/aiclient-2-api:2.8.3.2
 domain: chart-example.local
+
+copilot_api: 
+  enabled: false
+  image: ghcr.io/dseif0x/copilot-api:latest
