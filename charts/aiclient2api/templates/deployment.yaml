@@ -23,13 +23,10 @@ spec:
         volumeMounts:
         - name: aiclient2api-storage
           mountPath: /app/configs
+        {{- with .Values.resources }}
         resources:
-          requests:
-            memory: "100Mi"
-            cpu: "100m"
-          limits:
-            memory: "200Mi"
-            cpu: "200m"
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
       volumes:
         - name: aiclient2api-storage
           persistentVolumeClaim:
