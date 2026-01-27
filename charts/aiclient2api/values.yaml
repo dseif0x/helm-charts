@@ -18,4 +18,4 @@ copilot_api:
       cpu: "100m"
     limits:
       memory: "500Mi"
-      cpu: "750m"
+      cpu: "1500m"
