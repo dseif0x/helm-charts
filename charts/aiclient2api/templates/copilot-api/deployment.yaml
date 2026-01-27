@@ -29,8 +29,8 @@ spec:
             memory: "100Mi"
             cpu: "100m"
           limits:
-            memory: "200Mi"
-            cpu: "600m"
+            memory: "500Mi"
+            cpu: "200m"
       volumes:
         - name: copilot-api-storage
           persistentVolumeClaim:
