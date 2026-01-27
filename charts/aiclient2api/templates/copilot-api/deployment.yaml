@@ -29,7 +29,7 @@ spec:
             memory: "100Mi"
             cpu: "100m"
           limits:
-            memory: "200Mi"
+            memory: "500Mi"
             cpu: "200m"
       volumes:
         - name: copilot-api-storage
