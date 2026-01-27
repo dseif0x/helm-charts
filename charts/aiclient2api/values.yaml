@@ -1,6 +1,21 @@
 image: justlikemaki/aiclient-2-api:2.8.3.2
 domain: chart-example.local
 
+resources:
+  requests:
+    memory: "100Mi"
+    cpu: "100m"
+  limits:
+    memory: "200Mi"
+    cpu: "200m"
+
 copilot_api: 
   enabled: false
   image: ghcr.io/dseif0x/copilot-api:latest
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: "100m"
+    limits:
+      memory: "500Mi"
+      cpu: "1500m"
