@@ -177,6 +177,16 @@ entries:
   ccs:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-03-05T02:01:43.875426638Z"
+    description: A Helm chart for Kubernetes
+    digest: 9fdb2d30790e89898a2c2357040a98c4b212ec210c0d6607a6cbca0904b527de
+    name: ccs
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/ccs-0.2.2/ccs-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-03-05T01:28:30.583478293Z"
     description: A Helm chart for Kubernetes
     digest: a83f72a4a82acca206145379eddb23d60d352f75c49f1eef7be40e62767b67cd
@@ -527,4 +537,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-05T01:28:30.58353545Z"
+generated: "2026-03-05T02:01:43.875517047Z"
