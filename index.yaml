@@ -174,6 +174,17 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.0/arr-0.1.0.tgz
     version: 0.1.0
+  ccs:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-03-05T01:16:50.208798335Z"
+    description: A Helm chart for Kubernetes
+    digest: 716e1ebdb7bc4e007476857418328e88d1e39707752216f7291dac4baf249628
+    name: ccs
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/ccs-0.2.0/ccs-0.2.0.tgz
+    version: 0.2.0
   chatterbox-tts-server:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -506,4 +517,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-27T16:51:51.730241Z"
+generated: "2026-03-05T01:16:50.2088812Z"
