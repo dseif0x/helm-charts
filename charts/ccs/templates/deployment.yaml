@@ -20,9 +20,12 @@ spec:
         - containerPort: 3000
           protocol: TCP
           name: http
+        env:
+        - name: CCS_PORT
+          value: "3000"
         volumeMounts:
         - name: ccs-storage
-          mountPath: /app/configs
+          mountPath: /home/node/.ccs
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 10 }}
