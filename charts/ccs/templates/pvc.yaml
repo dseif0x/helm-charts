@@ -9,3 +9,39 @@ spec:
   resources:
     requests:
       storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ccs-data-claude
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-fast
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ccs-data-opencode
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-fast
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ccs-data-grok
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-fast
+  resources:
+    requests:
+      storage: 1Gi
