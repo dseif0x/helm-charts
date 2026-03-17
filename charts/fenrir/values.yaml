@@ -3,7 +3,7 @@ sessions:
 
 externalHostname: "moonlight.homelab.seifert.id"
 wolfImage: "ghcr.io/games-on-whales/wolf:stable"
-wolfAgentImage: "ghcr.io/dseif0x/wolf-agent:main"
+wolfAgentImage: "ghcr.io/dseif0x/fenrir/wolf-agent:main"
 
-operatorImage: "ghcr.io/dseif0x/operator:main"
-proxyImage: "ghcr.io/dseif0x/moonlight-proxy:main"
+operatorImage: "ghcr.io/dseif0x/fenrir/direwolf-operator:main"
+proxyImage: "ghcr.io/dseif0x/fenrir/moonlight-proxy:main"
