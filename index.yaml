@@ -302,6 +302,16 @@ entries:
   fenrir:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-03-17T14:45:18.202615711Z"
+    description: A Helm chart for Kubernetes
+    digest: a65e1e381465cbe817d0ff4a91f371ef8416bbc410abf4271c805273d4d1dc49
+    name: fenrir
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/fenrir-0.1.1/fenrir-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-07-28T22:37:32.582159018Z"
     description: A Helm chart for Kubernetes
     digest: aba40049a8084cc36c2a1f9e6274bf0a03478205df4a1132ab1d7075748f9402
@@ -537,4 +547,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-05T02:01:43.875517047Z"
+generated: "2026-03-17T14:45:18.202680392Z"
