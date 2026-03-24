@@ -1,5 +1,6 @@
 image: ghcr.io/dseif0x/ccs:latest
 domain: chart-example.local
+apidomain: api.chart-example.local
 
 resources:
   requests:

@@ -20,6 +20,9 @@ spec:
         - containerPort: 3000
           protocol: TCP
           name: http
+        - containerPort: 8317
+          protocol: TCP
+          name: cliproxy
         env:
         - name: CCS_PORT
           value: "3000"
@@ -63,3 +66,7 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 3000
+  - name: cliproxy
+    port: 8317
+    protocol: TCP
+    targetPort: 8317
