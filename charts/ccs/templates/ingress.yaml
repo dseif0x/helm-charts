@@ -9,6 +9,7 @@ spec:
   tls:
     - hosts:
         - "{{ .Values.domain }}"
+        - "{{ .Values.apidomain }}"
       secretName: ccs-cert
   rules:
     - host: {{ .Values.domain }}
