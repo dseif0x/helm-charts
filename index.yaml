@@ -177,6 +177,16 @@ entries:
   ccs:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-03-29T16:05:27.208865421Z"
+    description: A Helm chart for Kubernetes
+    digest: 708f6aef666c5d9b85a86344c03dbf34a294bcd70a396f78f0a46197c0f2d7e1
+    name: ccs
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/ccs-0.2.4/ccs-0.2.4.tgz
+    version: 0.2.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-03-24T11:17:14.392221632Z"
     description: A Helm chart for Kubernetes
     digest: 45bb4c3074dd19fd539e4b7491a1ed4bd1cb9b9b4373b1cbd7233c6ec8333efe
@@ -525,6 +535,17 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.0/speedtest-tracker-0.1.0.tgz
     version: 0.1.0
+  trek:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-03-29T16:05:27.359313682Z"
+    description: A Helm chart for Kubernetes
+    digest: 48b33cd906ed8d03c52ffee66ff8432fa55a8d24c3f22ef7f9c42780d8e0c5a9
+    name: trek
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/trek-0.1.0/trek-0.1.0.tgz
+    version: 0.1.0
   widefrog-download:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -557,4 +578,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-24T11:17:14.392308435Z"
+generated: "2026-03-29T16:05:27.359406051Z"
