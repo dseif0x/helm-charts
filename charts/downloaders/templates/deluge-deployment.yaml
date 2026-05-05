@@ -85,7 +85,7 @@ spec:
             command:
               - /bin/sh
               - -c
-              - "ping -c 1 1.1.1.1 && nslookup google.com || exit 1"
+              - "wget -q -T 10 -O /dev/null http://1.1.1.1"
           initialDelaySeconds: 60
           periodSeconds: 20
           failureThreshold: 3
