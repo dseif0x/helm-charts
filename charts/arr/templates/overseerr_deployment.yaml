@@ -35,8 +35,8 @@ spec:
               memory: "351Mi"
               cpu: "100m"
             limits:
-              memory: "638Mi"
-              cpu: "200m"
+              memory: "1000Mi"
+              cpu: "2000m"
       volumes:
         - {name: config, persistentVolumeClaim: {claimName: overseerr-config-pvc}}
 ---
