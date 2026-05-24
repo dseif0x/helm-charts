@@ -63,6 +63,9 @@ ingress:
 
 # Persistent storage for /opt/data — the single source of truth for all Hermes
 # state (config, API keys, conversation history, skills, memories).
+#
+# Run `hermes setup` interactively against the mounted volume to initialise it,
+# e.g. `kubectl exec -it deploy/<release>-hermes-agents -- hermes setup`.
 persistence:
   enabled: true
   # If set, an existing PVC with this name is used instead of creating one.
@@ -72,31 +75,6 @@ persistence:
     - ReadWriteOnce
   size: 10Gi
   annotations: {}
-
-# Seed credentials into the PVC on first start. Intended for provisioning the
-# Anthropic OAuth credential (~/.hermes/auth.json) generated locally with
-# `hermes auth add anthropic --type oauth`. The init container copies each key
-# from the Secret to /opt/data/<key> only if the file does not already exist,
-# so OAuth token refreshes that Hermes later writes back to the PVC are
-# preserved across pod restarts.
-#
-# Typical usage to seed an OAuth credential:
-#   1. Run `hermes auth add anthropic --type oauth` locally to populate
-#      ~/.hermes/auth.json.
-#   2. kubectl create secret generic hermes-auth \
-#        --from-file=auth.json=$HOME/.hermes/auth.json
-#   3. Set auth.seed.enabled=true and auth.seed.existingSecret=hermes-auth.
-#
-# For API-key auth, set ANTHROPIC_API_KEY (or OPENAI_API_KEY, ...) via `env` /
-# `envFrom` instead — no seeding required.
-auth:
-  seed:
-    enabled: false
-    existingSecret: ""
-    image:
-      repository: busybox
-      tag: "1.36"
-      pullPolicy: IfNotPresent
 
 resources: {}
   # limits:

@@ -32,33 +32,6 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if and .Values.auth.seed.enabled .Values.auth.seed.existingSecret }}
-      initContainers:
-        - name: seed-auth
-          image: "{{ .Values.auth.seed.image.repository }}:{{ .Values.auth.seed.image.tag }}"
-          imagePullPolicy: {{ .Values.auth.seed.image.pullPolicy }}
-          command:
-            - sh
-            - -c
-            - |
-              set -eu
-              for f in /seed/*; do
-                [ -e "$f" ] || continue
-                name=$(basename "$f")
-                if [ -e "/opt/data/$name" ]; then
-                  echo "skip /opt/data/$name (exists)"
-                else
-                  echo "seed /opt/data/$name"
-                  cp "$f" "/opt/data/$name"
-                fi
-              done
-          volumeMounts:
-            - name: data
-              mountPath: /opt/data
-            - name: auth-seed
-              mountPath: /seed
-              readOnly: true
-      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -101,11 +74,6 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
-        {{- if and .Values.auth.seed.enabled .Values.auth.seed.existingSecret }}
-        - name: auth-seed
-          secret:
-            secretName: {{ .Values.auth.seed.existingSecret }}
-        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
