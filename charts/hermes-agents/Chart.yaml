@@ -2,7 +2,7 @@ apiVersion: v2
 name: hermes-agents
 description: A Helm chart for Hermes Agent by Nous Research
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: "latest"
 sources:
   - https://github.com/NousResearch/hermes-agent
