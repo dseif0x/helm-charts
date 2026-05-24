@@ -40,8 +40,8 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.command }}
-          command:
+          {{- with .Values.args }}
+          args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
