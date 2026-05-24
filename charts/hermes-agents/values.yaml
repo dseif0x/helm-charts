@@ -10,8 +10,9 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-# Container command. Hermes documents `gateway run` as the default entrypoint.
-command:
+# Arguments passed to the image entrypoint (`hermes`). Hermes documents
+# `gateway run` as the default for a long-running gateway pod.
+args:
   - gateway
   - run
 
