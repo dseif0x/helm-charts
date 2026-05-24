@@ -374,6 +374,19 @@ entries:
   hermes-agents:
   - apiVersion: v2
     appVersion: latest
+    created: "2026-05-24T20:57:57.54106827Z"
+    description: A Helm chart for Hermes Agent by Nous Research
+    digest: 80b1a2d6afb9ce47c6310ae52f8a98af0f97397e07c106b3d1b1e67dada8e2ef
+    home: https://hermes-agent.nousresearch.com
+    name: hermes-agents
+    sources:
+    - https://github.com/NousResearch/hermes-agent
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/hermes-agents-0.1.1/hermes-agents-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2026-05-24T20:27:12.468970398Z"
     description: A Helm chart for Hermes Agent by Nous Research
     digest: 3ef0f7e52777704ba31ef99c1ae8b5b6908542e7222776bfe938b93b5ae9f269
@@ -612,4 +625,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-05-24T20:27:12.469041926Z"
+generated: "2026-05-24T20:57:57.541152579Z"
