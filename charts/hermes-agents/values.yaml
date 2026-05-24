@@ -1,0 +1,111 @@
+replicaCount: 1
+
+image:
+  repository: nousresearch/hermes-agent
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+# Container command. Hermes documents `gateway run` as the default entrypoint.
+command:
+  - gateway
+  - run
+
+# Environment variables passed to the container. Reference the Hermes docs for
+# the full list (HERMES_DASHBOARD, API_SERVER_*, ANTHROPIC_API_KEY, ...).
+env: []
+  # - name: HERMES_DASHBOARD
+  #   value: "1"
+  # - name: API_SERVER_ENABLED
+  #   value: "true"
+
+# Env vars sourced from existing Secrets or ConfigMaps.
+envFrom: []
+  # - secretRef:
+  #     name: hermes-secrets
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+securityContext: {}
+
+service:
+  enabled: true
+  type: ClusterIP
+  port: 8642
+  # Port the dashboard listens on when HERMES_DASHBOARD=1. Exposed only when
+  # `dashboard.enabled` is true.
+  dashboardPort: 9119
+
+# Set `enabled: true` to also expose the Hermes dashboard via the Service.
+dashboard:
+  enabled: false
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # cert-manager.io/cluster-issuer: letsencrypt
+  hosts:
+    - host: hermes.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+    # - hosts:
+    #     - hermes.example.com
+    #   secretName: hermes-tls
+
+# Persistent storage for /opt/data — the single source of truth for all Hermes
+# state (config, API keys, conversation history, skills, memories).
+persistence:
+  enabled: true
+  # If set, an existing PVC with this name is used instead of creating one.
+  existingClaim: ""
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
+  annotations: {}
+
+# Seed credentials into the PVC on first start. Intended for provisioning the
+# Anthropic OAuth credential (~/.hermes/auth.json) generated locally with
+# `hermes auth add anthropic --type oauth`. The init container copies each key
+# from the Secret to /opt/data/<key> only if the file does not already exist,
+# so OAuth token refreshes that Hermes later writes back to the PVC are
+# preserved across pod restarts.
+#
+# Typical usage to seed an OAuth credential:
+#   1. Run `hermes auth add anthropic --type oauth` locally to populate
+#      ~/.hermes/auth.json.
+#   2. kubectl create secret generic hermes-auth \
+#        --from-file=auth.json=$HOME/.hermes/auth.json
+#   3. Set auth.seed.enabled=true and auth.seed.existingSecret=hermes-auth.
+#
+# For API-key auth, set ANTHROPIC_API_KEY (or OPENAI_API_KEY, ...) via `env` /
+# `envFrom` instead — no seeding required.
+auth:
+  seed:
+    enabled: false
+    existingSecret: ""
+    image:
+      repository: busybox
+      tag: "1.36"
+      pullPolicy: IfNotPresent
+
+resources: {}
+  # limits:
+  #   cpu: 1000m
+  #   memory: 1Gi
+  # requests:
+  #   cpu: 100m
+  #   memory: 256Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
