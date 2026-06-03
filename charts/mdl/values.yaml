@@ -1,0 +1,52 @@
+# apple-music-downloader
+# https://github.com/zhaarey/apple-music-downloader
+# NOTE: the upstream image is a CLI. Swap `mdl.image` for an HTTP server image
+# when ready - the NFS download mount and wrapper wiring stay the same.
+mdl:
+  image: ghcr.io/zhaarey/apple-music-downloader:latest
+  imagePullPolicy: Always
+  # Port the (future) HTTP server listens on inside the container.
+  port: 8080
+  # Where downloads are written inside the container.
+  mountPath: /downloads
+  # NFS share holding the downloaded music.
+  nfs:
+    server: cp0.seifert.id
+    path: /mnt/hdd_huge/
+    subPath: applemusic
+    readOnly: false
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "1000m"
+
+# wrapper (decryption dependency)
+# https://github.com/WorldObservationLog/wrapper
+wrapper:
+  image: ghcr.io/worldobservationlog/wrapper:local
+  imagePullPolicy: Always
+  # Passed to the wrapper via the `args` env var. Bind to all interfaces so the
+  # downloader pod can reach the decrypt/m3u8/account services.
+  args: "-H 0.0.0.0"
+  # Service ports exposed by the wrapper.
+  decryptPort: 10020
+  m3u8Port: 20020
+  accountPort: 30020
+  # The wrapper emulates an Android device and needs a privileged container.
+  privileged: true
+  # Persistent storage for /app/rootfs/data (login state / device data).
+  storage:
+    size: 2Gi
+    storageClassName: nfs-fast
+    accessMode: ReadWriteOnce
+    mountPath: /app/rootfs/data
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "200m"
+    limits:
+      memory: "1Gi"
+      cpu: "2000m"

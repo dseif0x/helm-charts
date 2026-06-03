@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mdl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mdl
+  template:
+    metadata:
+      labels:
+        app: mdl
+    spec:
+      containers:
+      - image: {{ .Values.mdl.image }}
+        imagePullPolicy: {{ .Values.mdl.imagePullPolicy }}
+        name: mdl
+        ports:
+        - containerPort: {{ .Values.mdl.port }}
+          protocol: TCP
+          name: http
+        env:
+        # Connection details for the wrapper decryption dependency.
+        - name: WRAPPER_HOST
+          value: mdl-wrapper-svc
+        - name: WRAPPER_DECRYPT_PORT
+          value: {{ .Values.wrapper.decryptPort | quote }}
+        - name: WRAPPER_M3U8_PORT
+          value: {{ .Values.wrapper.m3u8Port | quote }}
+        - name: WRAPPER_ACCOUNT_PORT
+          value: {{ .Values.wrapper.accountPort | quote }}
+        volumeMounts:
+        - name: downloads
+          mountPath: {{ .Values.mdl.mountPath }}
+          {{- with .Values.mdl.nfs.subPath }}
+          subPath: {{ . }}
+          {{- end }}
+        {{- with .Values.mdl.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      volumes:
+        - name: downloads
+          nfs:
+            server: {{ .Values.mdl.nfs.server }}
+            path: {{ .Values.mdl.nfs.path }}
+            readOnly: {{ .Values.mdl.nfs.readOnly }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mdl-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: mdl
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: {{ .Values.mdl.port }}
