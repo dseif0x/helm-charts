@@ -291,6 +291,16 @@ entries:
   downloaders:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-06-04T09:20:47.65498848Z"
+    description: A Helm chart for Kubernetes
+    digest: f15ae6f779c7f7df34ba3998475b3e73ed0fc0bbaa43106ea37f69fa3eb4e358
+    name: downloaders
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/downloaders-0.1.5/downloaders-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-05-05T14:21:29.420192128Z"
     description: A Helm chart for Kubernetes
     digest: 507822b3d674ec61f5e488aa979beb6283d9c74d453efdf215a0d6802c8a9e02
@@ -516,6 +526,17 @@ entries:
   mdl:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-06-04T09:20:47.881448712Z"
+    description: A Helm chart for apple-music-downloader and its wrapper decryption
+      dependency
+    digest: 18b3dacabff511bd70948128c9a6e769ba88a2fadb65e04f41b350e6930b3628
+    name: mdl
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/mdl-0.2.0/mdl-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2026-06-04T08:22:53.006918421Z"
     description: A Helm chart for apple-music-downloader and its wrapper decryption
       dependency
@@ -637,4 +658,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-06-04T08:22:53.006997949Z"
+generated: "2026-06-04T09:20:47.881528982Z"
