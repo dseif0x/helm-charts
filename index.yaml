@@ -513,6 +513,18 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/matrix-synapse-0.1.0/matrix-synapse-0.1.0.tgz
     version: 0.1.0
+  mdl:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-06-04T08:22:53.006918421Z"
+    description: A Helm chart for apple-music-downloader and its wrapper decryption
+      dependency
+    digest: cfece3166119b6f951cfc74e7b3d4bbc38beb62a7f889e7d8b87ab2c1b6f7311
+    name: mdl
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/mdl-0.1.0/mdl-0.1.0.tgz
+    version: 0.1.0
   open-webui-ingress:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -625,4 +637,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-05-24T20:57:57.541152579Z"
+generated: "2026-06-04T08:22:53.006997949Z"
