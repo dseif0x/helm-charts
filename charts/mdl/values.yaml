@@ -19,6 +19,12 @@ mdl:
     path: /mnt/hdd_huge/
     subPath: applemusic
     readOnly: false
+  # Run the downloader as a non-root user instead of root. fsGroup makes the
+  # NFS download mount group-writable for this user. Set to {} to run as root.
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
   resources:
     requests:
       memory: "128Mi"
