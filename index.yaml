@@ -526,6 +526,17 @@ entries:
   mdl:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-06-04T10:31:06.618881318Z"
+    description: A Helm chart for apple-music-downloader and its wrapper decryption
+      dependency
+    digest: 7f65db8d8007b16ee2b4bed88947208f12605f3831f6028666c20ebd456c286c
+    name: mdl
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/mdl-0.5.0/mdl-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2026-06-04T10:15:36.622077701Z"
     description: A Helm chart for apple-music-downloader and its wrapper decryption
       dependency
@@ -680,4 +691,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-06-04T10:15:36.622174102Z"
+generated: "2026-06-04T10:31:06.618973133Z"
