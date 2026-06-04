@@ -22,6 +22,40 @@ mdl:
     limits:
       memory: "512Mi"
       cpu: "1000m"
+  # Rendered verbatim to /app/config.yaml inside the container. The
+  # `decrypt-m3u8-port` / `get-m3u8-port` keys are wired to the wrapper service
+  # automatically (see mdl-configmap.yaml), so don't set them here. All other
+  # upstream config.yaml options can be added/overridden below.
+  # https://github.com/zhaarey/apple-music-downloader/blob/main/config.yaml
+  config:
+    media-user-token: ""
+    authorization-token: ""
+    language: ""
+    lrc-type: lyrics
+    lrc-format: ttml
+    embed-lrc: true
+    save-lrc-file: false
+    save-artist-cover: false
+    save-animated-artwork: false
+    emby-animated-artwork: false
+    embed-cover: true
+    cover-size: 5000x5000
+    cover-format: jpg
+    alac-save-folder: AM-DL downloads
+    atmos-save-folder: AM-DL-Atmos downloads
+    aac-save-folder: AM-DL-AAC downloads
+    max-memory-limit: 256
+    get-m3u8-from-device: true
+    get-m3u8-mode: hires
+    aac-type: aac-lc
+    alac-max: 192000
+    atmos-max: 2768
+    limit-max: 200
+    use-songinfo-for-playlist: false
+    dl-albumcover-for-playlist: false
+    mv-audio-type: atmos
+    mv-max: 2160
+    storefront: ""
 
 # wrapper (decryption dependency)
 # https://github.com/WorldObservationLog/wrapper

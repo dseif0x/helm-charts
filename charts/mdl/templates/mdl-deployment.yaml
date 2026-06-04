@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         app: mdl
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/mdl-configmap.yaml") . | sha256sum }}
     spec:
       containers:
       - image: {{ .Values.mdl.image }}
@@ -31,6 +33,9 @@ spec:
         - name: WRAPPER_ACCOUNT_PORT
           value: {{ .Values.wrapper.accountPort | quote }}
         volumeMounts:
+        - name: config
+          mountPath: /app/config.yaml
+          subPath: config.yaml
         - name: downloads
           mountPath: {{ .Values.mdl.mountPath }}
           {{- with .Values.mdl.nfs.subPath }}
@@ -41,6 +46,9 @@ spec:
           {{- toYaml . | nindent 10 }}
         {{- end }}
       volumes:
+        - name: config
+          configMap:
+            name: mdl-config
         - name: downloads
           nfs:
             server: {{ .Values.mdl.nfs.server }}
