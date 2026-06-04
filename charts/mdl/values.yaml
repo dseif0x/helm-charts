@@ -9,6 +9,10 @@ mdl:
   port: 8080
   # Where downloads are written inside the container.
   mountPath: /downloads
+  # The upstream image is published for linux/amd64 only, so pin scheduling to
+  # amd64 nodes. Override/clear this only if an arm64 image becomes available.
+  nodeSelector:
+    kubernetes.io/arch: amd64
   # NFS share holding the downloaded music.
   nfs:
     server: cp0.seifert.id

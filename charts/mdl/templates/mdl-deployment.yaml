@@ -14,6 +14,10 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/mdl-configmap.yaml") . | sha256sum }}
     spec:
+      {{- with .Values.mdl.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - image: {{ .Values.mdl.image }}
         imagePullPolicy: {{ .Values.mdl.imagePullPolicy }}
