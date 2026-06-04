@@ -12,6 +12,10 @@ spec:
       labels:
         app: mdl-wrapper
     spec:
+      {{- with .Values.wrapper.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - image: {{ .Values.wrapper.image }}
         imagePullPolicy: {{ .Values.wrapper.imagePullPolicy }}

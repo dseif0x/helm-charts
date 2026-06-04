@@ -69,6 +69,11 @@ wrapper:
   # Passed to the wrapper via the `args` env var. Bind to all interfaces so the
   # downloader pod can reach the decrypt/m3u8/account services.
   args: "-H 0.0.0.0"
+  # The wrapper emulates an Android device and is published for linux/amd64
+  # only, so pin scheduling to amd64 nodes. Override/clear only if an arm64
+  # image becomes available.
+  nodeSelector:
+    kubernetes.io/arch: amd64
   # Service ports exposed by the wrapper.
   decryptPort: 10020
   m3u8Port: 20020
