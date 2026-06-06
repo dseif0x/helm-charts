@@ -41,7 +41,7 @@ spec:
               - "NET_ADMIN"              # Required to configure interfaces/ip-tables
         env:
           - name: DOT
-            value: "off"
+            value: "on"
           - name: VPN_SERVICE_PROVIDER
             value: "nordvpn"
           - name: VPN_TYPE
