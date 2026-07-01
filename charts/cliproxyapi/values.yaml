@@ -1,0 +1,126 @@
+# Default values for cliproxyapi.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: eceasy/cli-proxy-api
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #     - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8317
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: cliproxyapi.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: cliproxyapi-tls
+  #    hosts:
+  #      - cliproxyapi.local
+
+# Persistence for the authentication directory (auth-dir), where OAuth tokens
+# and per-credential state are stored and must survive pod restarts.
+persistence:
+  enabled: false
+  # Use an existing PersistentVolumeClaim instead of creating one.
+  existingClaim: ""
+  # storageClass: "-"
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+  annotations: {}
+  # Path inside the container where the volume is mounted. Must match
+  # config."auth-dir" below so credentials are written to the persistent volume.
+  mountPath: /root/.cli-proxy-api
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube.
+  # limits:
+  #   cpu: 500m
+  #   memory: 512Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+livenessProbe:
+  tcpSocket:
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 15
+
+readinessProbe:
+  tcpSocket:
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Application configuration rendered into a ConfigMap and mounted at
+# /CLIProxyAPI/config.yaml. Any key from CLIProxyAPI's config.example.yaml may
+# be added here. See https://github.com/router-for-me/CLIProxyAPI for the full
+# reference.
+config:
+  # Server host/interface to bind to. Empty binds all interfaces.
+  host: ""
+  # Server port. Should match service.port and the container port.
+  port: 8317
+  # Authentication directory. Keep this in sync with persistence.mountPath so
+  # OAuth tokens land on the persistent volume.
+  auth-dir: /root/.cli-proxy-api
+  # Enable debug logging.
+  debug: false
+  # API keys clients must present to authenticate against this proxy.
+  api-keys: []
+  #   - "your-api-key-1"
+  remote-management:
+    # Whether to allow remote (non-localhost) management access.
+    allow-remote: false
+    # Management key. Leave empty to disable the Management API entirely.
+    secret-key: ""

@@ -1,0 +1,35 @@
+CLIProxyAPI has been deployed.
+
+{{- if .Values.ingress.enabled }}
+
+It is reachable through the configured ingress at:
+{{- range $host := .Values.ingress.hosts }}
+  {{- range .paths }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}
+  {{- end }}
+{{- end }}
+{{- else if contains "NodePort" .Values.service.type }}
+
+Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "cliproxyapi.fullname" . }})
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+{{- else if contains "LoadBalancer" .Values.service.type }}
+
+Get the application URL by running these commands:
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "cliproxyapi.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+  echo http://$SERVICE_IP:{{ .Values.service.port }}
+{{- else if contains "ClusterIP" .Values.service.type }}
+
+Get the application URL by running these commands:
+  kubectl --namespace {{ .Release.Namespace }} port-forward svc/{{ include "cliproxyapi.fullname" . }} {{ .Values.service.port }}:{{ .Values.service.port }}
+  echo "Visit http://127.0.0.1:{{ .Values.service.port }} to use CLIProxyAPI"
+{{- end }}
+
+{{- if not .Values.persistence.enabled }}
+
+WARNING: Persistence is disabled. OAuth tokens and credential state written to
+"{{ index .Values.config "auth-dir" }}" will be lost when the pod restarts. Set
+persistence.enabled=true to retain them across restarts.
+{{- end }}
