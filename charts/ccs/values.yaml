@@ -1,4 +1,6 @@
-image: ghcr.io/dseif0x/ccs:latest
+# Public ccs image: Dashboard (port 3000) + CLIProxy (port 8317).
+# See https://github.com/kaitranntt/ccs/tree/main/docker
+image: ghcr.io/kaitranntt/ccs:latest
 domain: chart-example.local
 apidomain: api.chart-example.local
 
@@ -9,3 +11,27 @@ resources:
   limits:
     memory: "200Mi"
     cpu: "200m"
+
+# The public ccs image does not bundle the AI CLIs (claude-code, gemini-cli,
+# grok-cli, opencode). To run them, enable this sibling container. It reaches
+# CLIProxy through the ccs service (the Kubernetes analog of the docker
+# `ccs-net` network / `ccs` DNS name documented upstream).
+sibling:
+  enabled: false
+  # No official sibling image is published upstream. Supply an image that
+  # bundles the CLIs. The previous all-in-one image works as a drop-in.
+  image: ghcr.io/dseif0x/ccs:latest
+  # URL the sibling uses to reach CLIProxy (ccs service, cliproxy port).
+  cliproxyUrl: http://ccs-svc:8317
+  # Home directories inside the sibling image where each CLI stores its
+  # config/auth. Defaults match the all-in-one image (node user).
+  claudeHome: /home/node/.claude
+  opencodeHome: /home/node/.opencode
+  grokHome: /home/node/.grok-cli
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: "100m"
+    limits:
+      memory: "500Mi"
+      cpu: "1000m"

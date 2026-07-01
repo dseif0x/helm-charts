@@ -9,6 +9,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
+{{- if .Values.sibling.enabled }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -45,3 +46,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
+{{- end }}

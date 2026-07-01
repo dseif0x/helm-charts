@@ -28,13 +28,9 @@ spec:
           value: "3000"
         volumeMounts:
         - name: ccs-storage
-          mountPath: /home/node/.ccs
-        - name: ccs-storage-claude
-          mountPath: /home/node/.claude
-        - name: ccs-storage-opencode
-          mountPath: /home/node/.opencode
-        - name: ccs-storage-grok
-          mountPath: /home/node/.grok-cli
+          mountPath: /root/.ccs
+        - name: ccs-logs
+          mountPath: /var/log/ccs
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 10 }}
@@ -43,15 +39,8 @@ spec:
         - name: ccs-storage
           persistentVolumeClaim:
             claimName: ccs-data
-        - name: ccs-storage-claude
-          persistentVolumeClaim:
-            claimName: ccs-data-claude
-        - name: ccs-storage-opencode
-          persistentVolumeClaim:
-            claimName: ccs-data-opencode
-        - name: ccs-storage-grok
-          persistentVolumeClaim:
-            claimName: ccs-data-grok
+        - name: ccs-logs
+          emptyDir: {}
 ---
 kind: Service
 apiVersion: v1

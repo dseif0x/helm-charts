@@ -1,0 +1,51 @@
+{{- if .Values.sibling.enabled }}
+# The public ccs image (Dashboard + CLIProxy) does not bundle the AI CLIs
+# (claude-code, gemini-cli, grok-cli, opencode). Per the upstream docker docs
+# they run in a sibling container that reaches CLIProxy over the network. In
+# Kubernetes that is this Deployment, which talks to CLIProxy via the ccs
+# service on port 8317 (the analog of the docker `ccs-net` / `ccs` DNS name).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ccs-sibling
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ccs-sibling
+  template:
+    metadata:
+      labels:
+        app: ccs-sibling
+    spec:
+      containers:
+      - image: {{ .Values.sibling.image }}
+        imagePullPolicy: Always
+        name: ccs-sibling
+        env:
+        - name: CLIPROXY_URL
+          value: {{ .Values.sibling.cliproxyUrl | quote }}
+        - name: OPENAI_BASE_URL
+          value: {{ .Values.sibling.cliproxyUrl | quote }}
+        volumeMounts:
+        - name: ccs-storage-claude
+          mountPath: {{ .Values.sibling.claudeHome }}
+        - name: ccs-storage-opencode
+          mountPath: {{ .Values.sibling.opencodeHome }}
+        - name: ccs-storage-grok
+          mountPath: {{ .Values.sibling.grokHome }}
+        {{- with .Values.sibling.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      volumes:
+        - name: ccs-storage-claude
+          persistentVolumeClaim:
+            claimName: ccs-data-claude
+        - name: ccs-storage-opencode
+          persistentVolumeClaim:
+            claimName: ccs-data-opencode
+        - name: ccs-storage-grok
+          persistentVolumeClaim:
+            claimName: ccs-data-grok
+{{- end }}
