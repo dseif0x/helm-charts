@@ -246,6 +246,28 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/chatterbox-tts-server-0.1.0/chatterbox-tts-server-0.1.0.tgz
     version: 0.1.0
+  cliproxyapi:
+  - apiVersion: v2
+    appVersion: v7.2.48
+    created: "2026-07-01T19:58:19.576447542Z"
+    description: A Helm chart for CLIProxyAPI - a proxy server exposing OpenAI/Gemini/Claude/Codex-compatible
+      endpoints backed by multiple AI providers
+    digest: 377a8f1a02c175910639a58049b818ffdd9a48dc353b51bc8dacb93bd1190f48
+    home: https://github.com/router-for-me/CLIProxyAPI
+    keywords:
+    - ai
+    - proxy
+    - openai
+    - gemini
+    - claude
+    - codex
+    name: cliproxyapi
+    sources:
+    - https://github.com/router-for-me/CLIProxyAPI
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/cliproxyapi-0.1.0/cliproxyapi-0.1.0.tgz
+    version: 0.1.0
   cloudflared:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -712,4 +734,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-06-06T09:46:22.138487951Z"
+generated: "2026-07-01T19:58:19.576518514Z"
