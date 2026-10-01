@@ -46,7 +46,6 @@ spec:
               cpu: "100m"
             limits:
               memory: "408Mi"
-              cpu: "200m"
       volumes:
         - {name: config, persistentVolumeClaim: {claimName: speedtest-tracker-config-pvc}}
 ---

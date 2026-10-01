@@ -37,6 +37,8 @@ spec:
             # it has an active connection to the edge.
             path: /ready
             port: 2000
-          failureThreshold: 1
+          # A brief network blip drops all tunnel connections at once; give
+          # them time to reconnect instead of restarting the pod.
+          failureThreshold: 5
           initialDelaySeconds: 10
           periodSeconds: 10

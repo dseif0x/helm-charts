@@ -32,7 +32,6 @@ flaresolverr:
       cpu: "100m"
     limits:
       memory: "744Mi"
-      cpu: "200m"
 
 prowlarr:
   image: lscr.io/linuxserver/prowlarr:latest
@@ -43,7 +42,6 @@ prowlarr:
       cpu: "100m"
     limits:
       memory: "638Mi"
-      cpu: "200m"
 
 radarr:
   image: lscr.io/linuxserver/radarr:latest
@@ -54,7 +52,6 @@ radarr:
       cpu: "100m"
     limits:
       memory: "450Mi"
-      cpu: "200m"
 
 sonarr:
   image: lscr.io/linuxserver/sonarr:latest
@@ -65,4 +62,3 @@ sonarr:
       cpu: "100m"
     limits:
       memory: "450Mi"
-      cpu: "200m"

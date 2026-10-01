@@ -4,6 +4,11 @@
 
 replicaCount: 1
 
+# OAuth tokens live on a ReadWriteOnce volume and get refreshed in place, so
+# never run an old and a new pod side by side.
+strategy:
+  type: Recreate
+
 image:
   repository: eceasy/cli-proxy-api
   pullPolicy: IfNotPresent
