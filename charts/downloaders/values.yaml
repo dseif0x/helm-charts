@@ -2,8 +2,10 @@ baseDomain: dl.homelab.seifert.id
 
 deluge:
   image: linuxserver/deluge:latest
+  nodeSelector: {}
 
 sabnzbd:
   image: lscr.io/linuxserver/sabnzbd:latest
+  nodeSelector: {}
 
 extraResources:

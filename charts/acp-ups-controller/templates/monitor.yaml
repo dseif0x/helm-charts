@@ -14,6 +14,10 @@ spec:
       labels:
         app: k8s-ups-monitor
     spec:
+      {{- with .Values.monitor.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - name: k8s-ups-monitor
         image: {{ .Values.monitor.image }}

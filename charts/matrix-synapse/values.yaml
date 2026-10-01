@@ -7,3 +7,5 @@ resources:
   limits:
     memory: "1000Mi"
     cpu: "250m"
+
+nodeSelector: {}

@@ -20,6 +20,10 @@ spec:
     metadata:
       labels: {app: sabnzbd}
     spec:
+      {{- with .Values.sabnzbd.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       # All containers in the pod share this network namespace
       volumes:
         - {name: config, persistentVolumeClaim: {claimName: sabnzbd-config-pvc}}

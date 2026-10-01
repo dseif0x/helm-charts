@@ -20,6 +20,10 @@ spec:
     metadata:
       labels: {app: deluge}
     spec:
+      {{- with .Values.deluge.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       # All containers in the pod share this network namespace
       volumes:
         - {name: config, persistentVolumeClaim: {claimName: deluge-config-pvc}}
