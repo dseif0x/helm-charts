@@ -1,0 +1,29 @@
+image:
+  repository: ghcr.io/dseif0x/rockchip-device-plugin
+  # Defaults to the chart's appVersion. Prefer an immutable sha-<short> tag.
+  tag: ""
+  pullPolicy: IfNotPresent
+
+# Number of pods that may use each resource at once. All slots map to the same
+# hardware; the kernel drivers multiplex it between processes.
+replicas:
+  npu: 4
+  vpu: 4
+
+# The plugin only advertises what it finds, so running it on a non-Rockchip
+# arm64 node is harmless.
+nodeSelector:
+  kubernetes.io/arch: arm64
+
+affinity: {}
+
+tolerations: []
+
+priorityClassName: system-node-critical
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 16Mi
+  limits:
+    memory: 64Mi
