@@ -3,6 +3,16 @@ entries:
   acp-ups-controller:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-01T21:03:04.869361036Z"
+    description: A Helm chart for Kubernetes
+    digest: 5d9867edcf891040ea9af22e37ff22248e2881ccff2d40e2881ca4fca58ced61
+    name: acp-ups-controller
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/acp-ups-controller-0.1.7/acp-ups-controller-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-09-15T12:20:18.813474633Z"
     description: A Helm chart for Kubernetes
     digest: 3a4f874ef822d7e39f89443ddd886d428563ae51819e350bda7f25378449f42a
@@ -144,6 +154,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/amd-gpu-device-plugin-0.1.0/amd-gpu-device-plugin-0.1.0.tgz
     version: 0.1.0
   arr:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-01T21:03:05.047232652Z"
+    description: A Helm chart for Kubernetes
+    digest: 6bba9614a7b14f5a0c1bfee521317cd1cceb442e04fe47400ab88c2311760382
+    name: arr
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.4/arr-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-05-05T12:00:22.579010268Z"
@@ -311,6 +331,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/comfyui-0.1.0/comfyui-0.1.0.tgz
     version: 0.1.0
   downloaders:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-01T21:03:05.223095823Z"
+    description: A Helm chart for Kubernetes
+    digest: f54b1839093e82826ad718a26ec967d6039bb5afa38ad56b98300eabbba15e91
+    name: downloaders
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/downloaders-0.1.7/downloaders-0.1.7.tgz
+    version: 0.1.7
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-06-06T09:46:22.138420024Z"
@@ -537,6 +567,16 @@ entries:
   matrix-synapse:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-01T21:03:05.398610129Z"
+    description: A Helm chart for Kubernetes
+    digest: 666f0749604a3edfe0330e1db60f04765299afe271f96eca9100144161de68f9
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/matrix-synapse-0.1.2/matrix-synapse-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-09-15T11:05:32.7982097Z"
     description: A Helm chart for Kubernetes
     digest: b47fa556a27c2af0b4e5f3a687b174dca5ff0e5a9cb35500154bce6bbb49a88c
@@ -746,4 +786,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-01T12:12:49.885878801Z"
+generated: "2026-10-01T21:03:05.398704855Z"
