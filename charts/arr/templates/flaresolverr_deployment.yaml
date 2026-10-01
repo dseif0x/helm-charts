@@ -11,6 +11,10 @@ spec:
   template:
     metadata: {labels: {app: flaresolverr}}
     spec:
+      {{- with .Values.flaresolverr.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       securityContext: {runAsUser: 1000, runAsGroup: 1000}
       containers:
         - name: flaresolverr
@@ -22,12 +26,7 @@ spec:
             - {name: TZ, value: "Europe/Vienna"}
           ports: [{containerPort: 8191}]
           resources:
-            requests:
-              memory: "410Mi"
-              cpu: "100m"
-            limits:
-              memory: "744Mi"
-              cpu: "200m"
+            {{- toYaml .Values.flaresolverr.resources | nindent 12 }}
 ---
 apiVersion: v1
 kind: Service

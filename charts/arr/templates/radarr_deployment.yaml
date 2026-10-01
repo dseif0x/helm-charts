@@ -19,6 +19,10 @@ spec:
   template:
     metadata: {labels: {app: radarr}}
     spec:
+      {{- with .Values.radarr.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       securityContext: {runAsUser: 1000, runAsGroup: 1000}
       containers:
         - name: radarr
@@ -34,12 +38,7 @@ spec:
             - {name: nfs, mountPath: /usenet,   subPath: nzbget/done}
             - {name: nfs, mountPath: /hdd_huge_movies, subPath: movies}
           resources:
-            requests:
-              memory: "262Mi"
-              cpu: "100m"
-            limits:
-              memory: "450Mi"
-              cpu: "200m"
+            {{- toYaml .Values.radarr.resources | nindent 12 }}
       volumes:
         - {name: config, persistentVolumeClaim: {claimName: radarr-config-pvc}}
         - name: nfs

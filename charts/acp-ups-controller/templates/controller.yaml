@@ -14,6 +14,10 @@ spec:
       labels:
         app: k8s-ups-drainer
     spec:
+      {{- with .Values.controller.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       serviceAccountName: k8s-ups-drainer
       containers:
       - name: k8s-ups-drainer

@@ -32,8 +32,10 @@ spec:
     metadata:
       labels: {app: jellyfin}
     spec:
-      #nodeSelector:
-      #  kubernetes.io/hostname: brute
+      {{- with .Values.jellyfin.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
@@ -47,13 +49,7 @@ spec:
             - {name: cache,  mountPath: /cache}
             - {name: media,  mountPath: /hdd_huge_media, readOnly: true}
           resources:
-            requests:
-              memory: "1000Mi"
-              cpu: "100m"
-            limits:
-              memory: "10000Mi"
-              cpu: "8000m"
-              amd.com/gpu: 1
+            {{- toYaml .Values.jellyfin.resources | nindent 12 }}
       volumes:
         - {name: config,  persistentVolumeClaim: {claimName: jellyfin-config-pvc}}
         - {name: cache,   persistentVolumeClaim: {claimName: jellyfin-cache-pvc}}

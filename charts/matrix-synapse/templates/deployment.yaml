@@ -27,6 +27,10 @@ spec:
       labels:
         app: synapse
     spec:
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: synapse
           image:  matrixdotorg/synapse:latest

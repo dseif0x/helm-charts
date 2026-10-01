@@ -2,9 +2,11 @@ extraResources:
 
 controller:
   image: ghcr.io/dseif0x/acpups-mqtt-controller:latest
+  affinity: {}
 
 monitor:
   image: ghcr.io/dseif0x/acpups-mqtt:latest
+  affinity: {}
 
 mqtt:
   topic: "ups/status"
