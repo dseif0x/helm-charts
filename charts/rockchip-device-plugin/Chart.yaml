@@ -1,0 +1,6 @@
+apiVersion: v2
+name: rockchip-device-plugin
+description: Kubernetes device plugin for Rockchip NPU (rockchip.com/npu) and VPU (rockchip.com/vpu)
+type: application
+version: 0.1.0
+appVersion: "main"
