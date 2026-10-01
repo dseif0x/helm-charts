@@ -648,6 +648,18 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/openreader-webui-0.1.0/openreader-webui-0.1.0.tgz
     version: 0.1.0
+  rockchip-device-plugin:
+  - apiVersion: v2
+    appVersion: main
+    created: "2026-10-01T12:12:49.885800352Z"
+    description: Kubernetes device plugin for Rockchip NPU (rockchip.com/npu) and
+      VPU (rockchip.com/vpu)
+    digest: cbd81ee44cc9748c122ce321b02516a311e758a1b146c21ede94e6ed9fcd27ae
+    name: rockchip-device-plugin
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/rockchip-device-plugin-0.1.0/rockchip-device-plugin-0.1.0.tgz
+    version: 0.1.0
   rockchip-npu-device-plugin:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -734,4 +746,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-07-01T19:58:19.576518514Z"
+generated: "2026-10-01T12:12:49.885878801Z"
