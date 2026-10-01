@@ -63,7 +63,6 @@ spec:
             cpu: "25m"
           limits:
             memory: "200Mi"
-            cpu: "200m"
       - name: sabnzbd
         image: {{ .Values.sabnzbd.image }}
         env:
@@ -82,7 +81,6 @@ spec:
             cpu: "100m"
           limits:
             memory: "2000Mi"
-            cpu: "1000m"
         livenessProbe:
           exec:
             command:
