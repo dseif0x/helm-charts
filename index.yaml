@@ -156,6 +156,16 @@ entries:
   arr:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-01T22:16:29.635297108Z"
+    description: A Helm chart for Kubernetes
+    digest: d8fb6dafd3b4ecc8b47d3f52cc97799a30371cd770c03657520688bffcdd8895
+    name: arr
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.5/arr-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-01T21:03:05.047232652Z"
     description: A Helm chart for Kubernetes
     digest: 6bba9614a7b14f5a0c1bfee521317cd1cceb442e04fe47400ab88c2311760382
@@ -269,6 +279,27 @@ entries:
   cliproxyapi:
   - apiVersion: v2
     appVersion: v7.2.48
+    created: "2026-10-01T22:16:29.84736587Z"
+    description: A Helm chart for CLIProxyAPI - a proxy server exposing OpenAI/Gemini/Claude/Codex-compatible
+      endpoints backed by multiple AI providers
+    digest: 8cd39605b679f1e4e3b679352190f0e691cc9e9b7efa1d069ea1f8a3dd4d5c26
+    home: https://github.com/router-for-me/CLIProxyAPI
+    keywords:
+    - ai
+    - proxy
+    - openai
+    - gemini
+    - claude
+    - codex
+    name: cliproxyapi
+    sources:
+    - https://github.com/router-for-me/CLIProxyAPI
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/cliproxyapi-0.1.1/cliproxyapi-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: v7.2.48
     created: "2026-07-01T19:58:19.576447542Z"
     description: A Helm chart for CLIProxyAPI - a proxy server exposing OpenAI/Gemini/Claude/Codex-compatible
       endpoints backed by multiple AI providers
@@ -289,6 +320,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/cliproxyapi-0.1.0/cliproxyapi-0.1.0.tgz
     version: 0.1.0
   cloudflared:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-01T22:16:30.102373818Z"
+    description: A Helm chart for Kubernetes
+    digest: 697dc138d4917e9e1d2e78ac817b51abdfaac5c2b79625c62dfdf858e9459038
+    name: cloudflared
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/cloudflared-0.1.1/cloudflared-0.1.1.tgz
+    version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2025-07-28T22:37:32.225781818Z"
@@ -331,6 +372,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/comfyui-0.1.0/comfyui-0.1.0.tgz
     version: 0.1.0
   downloaders:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-01T22:16:30.322291443Z"
+    description: A Helm chart for Kubernetes
+    digest: 71e3da5ad541f8979efd1c18df33eae96af85d90368d0328c4c1f5cacda990ca
+    name: downloaders
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/downloaders-0.1.8/downloaders-0.1.8.tgz
+    version: 0.1.8
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-10-01T21:03:05.223095823Z"
@@ -556,6 +607,16 @@ entries:
   librespeedtest:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-01T22:16:30.510889656Z"
+    description: A Helm chart for Kubernetes
+    digest: 685cf5abf9bdc63e732642308f691a3113ec1ff7dbd0a10efe91cc85451e37e5
+    name: librespeedtest
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/librespeedtest-0.1.1/librespeedtest-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-07-29T15:22:41.700221067Z"
     description: A Helm chart for Kubernetes
     digest: 9a6baf07b1758a5c0fbe595da1384eccc4ae0d37cb864c8407104509aadc487f
@@ -565,6 +626,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/librespeedtest-0.1.0/librespeedtest-0.1.0.tgz
     version: 0.1.0
   matrix-synapse:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-01T22:16:30.786551596Z"
+    description: A Helm chart for Kubernetes
+    digest: be3f0db025da18a00e1052aca91c3bbd00c8fae97dd8465c68d35b78bbcf57a2
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/matrix-synapse-0.1.3/matrix-synapse-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-10-01T21:03:05.398610129Z"
@@ -725,6 +796,16 @@ entries:
   speedtest-tracker:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-01T22:16:31.047063298Z"
+    description: A Helm chart for Kubernetes
+    digest: f7843d67496f75fc231b4d5c0612dae6ca20ad457bcb9a2196fbfdb78f91007d
+    name: speedtest-tracker
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.2/speedtest-tracker-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-09-15T18:20:40.166793697Z"
     description: A Helm chart for Kubernetes
     digest: cb19e2730fd259580bb9b10464533041e73c6580587e15cba6067677e9c652ee
@@ -744,6 +825,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.0/speedtest-tracker-0.1.0.tgz
     version: 0.1.0
   trek:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-01T22:16:31.313917546Z"
+    description: A Helm chart for Kubernetes
+    digest: 92e253e353b04899508a9ca91fd4bc75996a7580da33aa015aa2f622145e9a3c
+    name: trek
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/trek-0.1.1/trek-0.1.1.tgz
+    version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-03-29T16:05:27.359313682Z"
@@ -786,4 +877,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-01T21:03:05.398704855Z"
+generated: "2026-10-01T22:16:31.314104316Z"
