@@ -1,5 +1,8 @@
 domain: matrix.homelab.seifert.id
 
+# Synapse runs DB migrations on upgrade: bump deliberately.
+image: matrixdotorg/synapse:v1.162.0
+
 resources:
   requests:
     memory: "200Mi"
@@ -7,4 +10,6 @@ resources:
   limits:
     memory: "1000Mi"
 
-nodeSelector: {}
+# Latency-sensitive: keep off the Orange Pis.
+nodeSelector:
+  kubernetes.io/arch: amd64

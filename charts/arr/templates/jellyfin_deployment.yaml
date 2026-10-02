@@ -43,6 +43,7 @@ spec:
       containers:
         - name: jellyfin
           image: {{ .Values.jellyfin.image }}
+          imagePullPolicy: IfNotPresent
           ports: [{containerPort: 8096}]
           volumeMounts:
             - {name: config, mountPath: /config}

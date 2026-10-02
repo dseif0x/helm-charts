@@ -16,7 +16,11 @@ spec:
       containers:
         - name: amd-gpu-device-plugin
           image: {{ .Values.image }}
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           securityContext:
             privileged: true # Allows the container full access to host hardware
           volumeMounts:

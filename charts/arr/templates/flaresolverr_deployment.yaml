@@ -19,6 +19,7 @@ spec:
       containers:
         - name: flaresolverr
           image: {{ .Values.flaresolverr.image }}
+          imagePullPolicy: IfNotPresent
           env:
             - {name: LOG_LEVEL,  value: "info"}
             - {name: LOG_HTML,   value: "false"}

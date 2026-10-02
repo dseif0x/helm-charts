@@ -21,7 +21,7 @@ spec:
       {{- end }}
       containers:
       - image: {{ .Values.image }}
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: trek
         ports:
         - containerPort: 3000

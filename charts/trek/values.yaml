@@ -1,4 +1,4 @@
-image: mauriceboe/trek:latest
+image: mauriceboe/trek:4.3.3
 domain: chart-example.local
 
 resources:
@@ -9,4 +9,6 @@ resources:
     memory: "200Mi"
     cpu: "200m"
 
-nodeSelector: {}
+# SQLite web app: slow on the Orange Pis.
+nodeSelector:
+  kubernetes.io/arch: amd64

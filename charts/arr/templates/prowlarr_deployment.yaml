@@ -27,6 +27,7 @@ spec:
       containers:
         - name: prowlarr
           image: {{ .Values.prowlarr.image }}
+          imagePullPolicy: IfNotPresent
           env:
             - {name: PUID, value: "1000"}
             - {name: PGID, value: "1000"}

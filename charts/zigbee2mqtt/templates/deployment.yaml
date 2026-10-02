@@ -39,6 +39,7 @@ spec:
       containers:
         - name: zigbee2mqtt
           image: {{ .Values.image }}
+          imagePullPolicy: IfNotPresent
           securityContext:
             privileged: true
             capabilities:

@@ -13,8 +13,8 @@ spec:
         app: libspeedtest
     spec:
       containers:
-      - image: ghcr.io/librespeed/speedtest:latest
-        imagePullPolicy: Always
+      - image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
         name: libspeedtest
         ports:
         - containerPort: 80

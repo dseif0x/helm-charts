@@ -14,7 +14,9 @@ jellyfin:
 
 overseerr:
   image: fallenbagel/jellyseerr:latest
-  nodeSelector: {}
+  # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  nodeSelector:
+    kubernetes.io/arch: amd64
   resources:
     requests:
       memory: "351Mi"
@@ -24,8 +26,10 @@ overseerr:
       cpu: "2000m"
 
 flaresolverr:
-  image: ghcr.io/flaresolverr/flaresolverr:latest
-  nodeSelector: {}
+  image: ghcr.io/flaresolverr/flaresolverr:v3.5.2
+  # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  nodeSelector:
+    kubernetes.io/arch: amd64
   resources:
     requests:
       memory: "410Mi"
@@ -34,8 +38,10 @@ flaresolverr:
       memory: "744Mi"
 
 prowlarr:
-  image: lscr.io/linuxserver/prowlarr:latest
-  nodeSelector: {}
+  image: lscr.io/linuxserver/prowlarr:2.6.5.5623-ls162
+  # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  nodeSelector:
+    kubernetes.io/arch: amd64
   resources:
     requests:
       memory: "351Mi"
@@ -45,7 +51,9 @@ prowlarr:
 
 radarr:
   image: lscr.io/linuxserver/radarr:latest
-  nodeSelector: {}
+  # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  nodeSelector:
+    kubernetes.io/arch: amd64
   resources:
     requests:
       memory: "262Mi"
@@ -55,7 +63,9 @@ radarr:
 
 sonarr:
   image: lscr.io/linuxserver/sonarr:latest
-  nodeSelector: {}
+  # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  nodeSelector:
+    kubernetes.io/arch: amd64
   resources:
     requests:
       memory: "262Mi"
