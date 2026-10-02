@@ -34,7 +34,8 @@ spec:
       containers:
       # ──► 1. VPN side-car
       - name: gluetun
-        image: qmcgaw/gluetun
+        image: {{ .Values.gluetun.image }}
+        imagePullPolicy: IfNotPresent
         lifecycle:
             postStart:
               exec:
@@ -67,6 +68,7 @@ spec:
             memory: "200Mi"
       - name: deluge
         image: {{ .Values.deluge.image }}
+        imagePullPolicy: IfNotPresent
         env:
           - {name: PUID, value: "1000"}
           - {name: PGID, value: "1000"}

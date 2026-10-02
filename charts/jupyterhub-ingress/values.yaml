@@ -5,14 +5,18 @@ jupyterhub:
     service: 
       type: ClusterIP
   hub:
+    # The hub keeps its SQLite DB on NFS: slow on the Orange Pis.
+    nodeSelector:
+      kubernetes.io/arch: amd64
+    resources:
+      requests:
+        cpu: 50m
+        memory: 160Mi
     db:
       pvc:
         storageClassName: "nfs-fast"
     revisionHistoryLimit:
     config:
-      KubeSpawner:
-        extra_pod_config:
-          runtimeClassName: nvidia
       Authenticator:
         admin_users:
           - dan
@@ -22,10 +26,9 @@ jupyterhub:
         authenticator_class: dummy
 
   singleuser:
-    extraTolerations:
-      - key: "nvidia.com/gpu"
-        operator: Exists
-        effect: NoSchedule
+    # The nvidia.com/gpu limit alone places user pods on visus: the API
+    # server's ExtendedResourceToleration plugin adds the taint toleration
+    # and visus's default runtime is nvidia.
     extraResource:
       limits:
         nvidia.com/gpu: 1  
@@ -34,5 +37,6 @@ jupyterhub:
         storageClass: "nfs-fast"
     image:
       name: ghcr.io/dseif0x/jupyter-singleuser-conda
-      tag: latest
+      # Current `latest` build, pinned by digest.
+      tag: "latest@sha256:76fad4061a61430cfa79bb309b0881048a1966dbf25759ac09b89af4a3ea0ec3"
 

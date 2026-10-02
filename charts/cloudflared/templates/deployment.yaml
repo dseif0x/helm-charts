@@ -13,8 +13,8 @@ spec:
     spec:
       containers:
       - name: cloudflared
-        image: "cloudflare/cloudflared:latest"
-        imagePullPolicy: Always
+        image: {{ .Values.image | quote }}
+        imagePullPolicy: IfNotPresent
         command:
           - cloudflared
           - tunnel

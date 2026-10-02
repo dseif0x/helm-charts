@@ -33,7 +33,8 @@ spec:
       {{- end }}
       containers:
         - name: synapse
-          image:  matrixdotorg/synapse:latest
+          image: {{ .Values.image }}
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: synapse-storage
               mountPath: /data

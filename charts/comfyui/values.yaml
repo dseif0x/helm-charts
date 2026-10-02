@@ -1,3 +1,10 @@
 domain: comfy.homelab.seifert.id
 baseDomain: homelab.seifert.id
 image: yanwk/comfyui-boot:cu128-slim-20251110
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 2Gi
+  limits:
+    nvidia.com/gpu: 1

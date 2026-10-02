@@ -22,7 +22,7 @@ spec:
       containers:
       - name: k8s-ups-drainer
         image: {{ .Values.controller.image }}
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: k8s-ups-drainer-config

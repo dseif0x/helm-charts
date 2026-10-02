@@ -27,6 +27,7 @@ spec:
       containers:
         - name: overseerr
           image: {{ .Values.overseerr.image }}
+          imagePullPolicy: IfNotPresent
           env:
             - {name: PUID, value: "1000"}
             - {name: PGID, value: "1000"}

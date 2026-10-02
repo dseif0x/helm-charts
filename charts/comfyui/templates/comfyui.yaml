@@ -14,11 +14,6 @@ spec:
       labels:
         app: comfyui
     spec:
-      runtimeClassName: nvidia
-      tolerations:
-        - key: "nvidia.com/gpu"
-          operator: Exists
-          effect: NoSchedule
       terminationGracePeriodSeconds: 0
       containers:
         - name: comfyui
@@ -32,9 +27,11 @@ spec:
               value: https://{{ .Values.domain }}
             - name: COMFYUI_URL
               value: https://{{ .Values.domain }}
+          # The nvidia.com/gpu limit alone places the pod on visus: the API
+          # server's ExtendedResourceToleration plugin adds the taint toleration
+          # and visus's default runtime is nvidia.
           resources:
-            limits:
-              nvidia.com/gpu: 1
+            {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - mountPath: /root
               name: root-volume
