@@ -5,13 +5,17 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: letsencrypt-dns
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   tls:
     - hosts:
         - {{ .Values.domain }}
       secretName: {{ .Release.Name }}-cert
   rules:
-    - host: {{ .Values.domain }}
+    {{- range (prepend .Values.ingress.extraHosts .Values.domain) }}
+    - host: {{ . }}
       http:
         paths:
           - path: /
@@ -21,3 +25,4 @@ spec:
                 name: comfyui-svc
                 port:
                   name: http
+    {{- end }}
