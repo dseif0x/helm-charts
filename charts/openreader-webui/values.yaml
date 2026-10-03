@@ -1,3 +1,0 @@
-domain: openreader.homelab.seifert.id
-apiBase: "http://kokoro-fastapi-kokoro-tts-service.kokoro-fastapi.svc.cluster.local:8880/v1"
-

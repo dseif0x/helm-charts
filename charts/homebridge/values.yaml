@@ -1,7 +1,0 @@
-domain: homebridge.homelab.seifert.id
-
-image:
-  pullPolicy: IfNotPresent
-  name: homebridge/homebridge:latest
-
-nodeSelector: {}

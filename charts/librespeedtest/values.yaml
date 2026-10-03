@@ -2,3 +2,8 @@ domain: chart-example.local
 
 # The running build of upstream `master` (no matching release tag).
 image: ghcr.io/librespeed/speedtest@sha256:069eb20987d74b501291afaafd795ddbe3f12399ae415aa06972dfcf96950a95
+
+# Measures throughput between the browser and this pod, so run it on the node
+# with the fastest NIC/CPU (brute) rather than an Orange Pi.
+nodeSelector:
+  kubernetes.io/arch: amd64
