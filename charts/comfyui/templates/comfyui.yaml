@@ -2,10 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: comfyui
+  {{- with .Values.deploymentLabels }}
+  labels:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   strategy:
     type: Recreate
-  replicas: 1
+  # No replicas: leave the count to whoever scales it (e.g. Sablier, which
+  # scales it to zero when idle). Defaults to 1 on creation.
   selector:
     matchLabels:
       app: comfyui

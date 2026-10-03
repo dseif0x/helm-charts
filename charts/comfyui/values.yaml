@@ -8,3 +8,13 @@ resources:
     memory: 2Gi
   limits:
     nvidia.com/gpu: 1
+
+# Extra labels on the Deployment (e.g. sablier.enable / sablier.group).
+deploymentLabels: {}
+
+ingress:
+  # Extra annotations, e.g. a Traefik middleware.
+  annotations: {}
+  # Additional hosts routed to the same service (no TLS entry is added for
+  # them, e.g. public hosts that arrive through a Cloudflare tunnel).
+  extraHosts: []
