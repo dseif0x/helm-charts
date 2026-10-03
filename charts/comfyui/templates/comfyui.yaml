@@ -23,6 +23,23 @@ spec:
       containers:
         - name: comfyui
           image: {{ .Values.image }}
+          readinessProbe:
+            httpGet: {path: /system_stats, port: 8188}
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet: {path: /system_stats, port: 8188}
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 5
+          # Up to 15 min for the first start (migrations / loading)
+          # before liveness takes over.
+          startupProbe:
+            httpGet: {path: /system_stats, port: 8188}
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 90
           ports:
             - containerPort: 8188
           env:

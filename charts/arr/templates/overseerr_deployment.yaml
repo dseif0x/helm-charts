@@ -28,6 +28,23 @@ spec:
         - name: overseerr
           image: {{ .Values.overseerr.image }}
           imagePullPolicy: IfNotPresent
+          readinessProbe:
+            httpGet: {path: /api/v1/status, port: 5055}
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet: {path: /api/v1/status, port: 5055}
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 5
+          # Up to 5 min for the first start (migrations / loading)
+          # before liveness takes over.
+          startupProbe:
+            httpGet: {path: /api/v1/status, port: 5055}
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
           env:
             - {name: PUID, value: "1000"}
             - {name: PGID, value: "1000"}
