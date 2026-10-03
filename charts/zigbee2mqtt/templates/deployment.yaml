@@ -47,6 +47,22 @@ spec:
           env:
             - name: TZ
               value: Europe/Berlin
+          readinessProbe:
+            httpGet: {path: /, port: 8080}
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet: {path: /, port: 8080}
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 5
+          # Coordinator start-up and network restore can take a while.
+          startupProbe:
+            httpGet: {path: /, port: 8080}
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
           volumeMounts:
             - name: data
               mountPath: /app/data

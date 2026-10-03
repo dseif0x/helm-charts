@@ -20,6 +20,16 @@ spec:
       - image: {{ .Values.image }}
         imagePullPolicy: IfNotPresent
         name: libspeedtest
+        readinessProbe:
+          httpGet: {path: /, port: 80}
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          httpGet: {path: /, port: 80}
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 5
         ports:
         - containerPort: 80
           protocol: TCP

@@ -35,6 +35,23 @@ spec:
         - name: synapse
           image: {{ .Values.image }}
           imagePullPolicy: IfNotPresent
+          readinessProbe:
+            httpGet: {path: /health, port: 8008}
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet: {path: /health, port: 8008}
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 5
+          # Up to 5 min for the first start (migrations / loading)
+          # before liveness takes over.
+          startupProbe:
+            httpGet: {path: /health, port: 8008}
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
           volumeMounts:
             - name: synapse-storage
               mountPath: /data
