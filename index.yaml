@@ -176,6 +176,16 @@ entries:
   arr:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-03T12:43:34.860766038Z"
+    description: A Helm chart for Kubernetes
+    digest: 0fd79c8cc8dc2bcca7d744ba7eab7f475a8a462f9e67ac6c3896bca5e6997192
+    name: arr
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.7/arr-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-02T13:23:02.343019459Z"
     description: A Helm chart for Kubernetes
     digest: c98e9d1d70baf727734852f31c9ead02d215dd7d7b8826028b3adb9e02daf196
@@ -381,6 +391,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/cloudflared-0.1.0/cloudflared-0.1.0.tgz
     version: 0.1.0
   comfyui:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-03T12:43:35.049612586Z"
+    description: A Helm chart for Kubernetes
+    digest: 1215ab1d3eb6fc62188319be22af26fe6590992f06a1cd9ffc9c58810c06fa3f
+    name: comfyui
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/comfyui-0.1.5/comfyui-0.1.5.tgz
+    version: 0.1.5
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-10-03T11:32:32.16747202Z"
@@ -691,6 +711,16 @@ entries:
   librespeedtest:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-03T12:43:35.240020606Z"
+    description: A Helm chart for Kubernetes
+    digest: 8433dd4533db338e29efc6d205f005c023a1d81cc0c84e4d2f34d4d738874d84
+    name: librespeedtest
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/librespeedtest-0.1.4/librespeedtest-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-03T12:03:35.096167994Z"
     description: A Helm chart for Kubernetes
     digest: 0e8df843eda344256893343783fcb1bf93ea415a66f5fb806a291c7a267d05a2
@@ -730,6 +760,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/librespeedtest-0.1.0/librespeedtest-0.1.0.tgz
     version: 0.1.0
   matrix-synapse:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-03T12:43:35.438398541Z"
+    description: A Helm chart for Kubernetes
+    digest: 6b3bc71e56a82d9b706aaf01a4608933cd5f60b8e38cd5eedd9e6a941d30687f
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/matrix-synapse-0.1.5/matrix-synapse-0.1.5.tgz
+    version: 0.1.5
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-10-02T13:23:03.902702652Z"
@@ -910,6 +950,16 @@ entries:
   speedtest-tracker:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-03T12:43:35.634036167Z"
+    description: A Helm chart for Kubernetes
+    digest: 3b1358e5a5c5de15aa6813ab21fe0f6d7a6da6da4e7adf699428b607ef247708
+    name: speedtest-tracker
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.3/speedtest-tracker-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-01T22:16:31.047063298Z"
     description: A Helm chart for Kubernetes
     digest: f7843d67496f75fc231b4d5c0612dae6ca20ad457bcb9a2196fbfdb78f91007d
@@ -983,6 +1033,16 @@ entries:
   zigbee2mqtt:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-03T12:43:35.838062499Z"
+    description: A Helm chart for Kubernetes
+    digest: fa52bb509a10cdb75724366d11d4aec4430161168360cf22555208a84b07e286
+    name: zigbee2mqtt
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.3/zigbee2mqtt-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-02T13:23:04.389849147Z"
     description: A Helm chart for Kubernetes
     digest: dbde263a4f1211f3eeebabda5c70feda0241d588ad58dd537c3d19650c3f7a5f
@@ -1011,4 +1071,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-03T12:03:35.096376917Z"
+generated: "2026-10-03T12:43:35.838224909Z"
