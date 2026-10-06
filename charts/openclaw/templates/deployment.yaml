@@ -166,6 +166,14 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           volumeMounts:
+            # HOME and /tmp must be writable by uid 1000: since 2026.9
+            # `doctor` (and the gateway) create a temp dir under /tmp, falling
+            # back to $HOME/.cache. /home/openclaw only exists in the image as
+            # the root-owned parent of the data mount.
+            - name: home
+              mountPath: /home/openclaw
+            - name: tmp
+              mountPath: /tmp
             - name: data
               mountPath: /home/openclaw/.openclaw
         {{- if .Values.chromium.enabled }}
@@ -194,6 +202,10 @@ spec:
               mountPath: /dev/shm
         {{- end }}
       volumes:
+        - name: home
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
         - name: config
           configMap:
             name: {{ include "openclaw.configmapName" . }}
