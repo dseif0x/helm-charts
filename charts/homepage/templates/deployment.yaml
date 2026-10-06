@@ -43,14 +43,34 @@ spec:
             - name: http
               containerPort: 3000
               protocol: TCP
+          # Since v2 Homepage checks the Host header on every path. Probes
+          # arrive with the pod IP as Host, so send one it always allows.
           livenessProbe:
             httpGet:
-              path: /
+              path: /api/healthcheck
               port: http
+              httpHeaders:
+                - name: Host
+                  value: localhost:3000
           readinessProbe:
             httpGet:
-              path: /
+              path: /api/healthcheck
               port: http
+              httpHeaders:
+                - name: Host
+                  value: localhost:3000
+          # First requests after start compile pages and can take ~1 min on
+          # the Orange Pis; don't let the liveness probe kill it meanwhile.
+          startupProbe:
+            httpGet:
+              path: /api/healthcheck
+              port: http
+              httpHeaders:
+                - name: Host
+                  value: localhost:3000
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 36
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
