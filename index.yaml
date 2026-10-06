@@ -362,6 +362,16 @@ entries:
   cloudflared:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-06T17:52:35.154590752Z"
+    description: A Helm chart for Kubernetes
+    digest: 33d463aadaeb8d51c14cafe994e572f584d662321d15dfaa532f9697127c0fc1
+    name: cloudflared
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/cloudflared-0.1.3/cloudflared-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-02T13:23:02.585832602Z"
     description: A Helm chart for Kubernetes
     digest: acf9c7a12275e64df0f27618fda9556487a8ba8e887f1a4051dc3e177cbff002
@@ -682,6 +692,20 @@ entries:
   jupyterhub-ingress:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-06T17:52:35.343361983Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://hub.jupyter.org/helm-chart/
+      version: 4.4.2
+    description: A Helm chart for Kubernetes
+    digest: a368626a5927c14e983a663ef7fe2582d78e060bcdf3794531ea3ec40a0b4384
+    name: jupyterhub-ingress
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/jupyterhub-ingress-0.1.2/jupyterhub-ingress-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-02T13:23:03.470038192Z"
     dependencies:
     - name: jupyterhub
@@ -950,6 +974,16 @@ entries:
   speedtest-tracker:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-06T17:52:35.523762444Z"
+    description: A Helm chart for Kubernetes
+    digest: 40d65b39dc5f433e402048974dd66ce1405249afa33a8999dde48819c87d98c8
+    name: speedtest-tracker
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.4/speedtest-tracker-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-03T12:43:35.634036167Z"
     description: A Helm chart for Kubernetes
     digest: 3b1358e5a5c5de15aa6813ab21fe0f6d7a6da6da4e7adf699428b607ef247708
@@ -1071,4 +1105,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-03T12:43:35.838224909Z"
+generated: "2026-10-06T17:52:35.523987657Z"
