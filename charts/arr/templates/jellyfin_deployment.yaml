@@ -40,6 +40,22 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
         supplementalGroups: [109, 44]
+      {{- if .Values.jellyfin.migrateOnStart }}
+      # Run database migrations (Jellyfin >= 12) before the server starts.
+      # Init containers have no probes, so a long one-way migration can't be
+      # killed halfway by the liveness probe. A no-op once migrated. (A
+      # failed migration still exits 0; the server then retries it and
+      # stays unready, see its log.)
+      initContainers:
+        - name: migrate
+          image: {{ .Values.jellyfin.image }}
+          imagePullPolicy: IfNotPresent
+          args: ["--mode", "MigrateSystem"]
+          volumeMounts:
+            - {name: config, mountPath: /config}
+            - {name: cache,  mountPath: /cache}
+            - {name: media,  mountPath: /hdd_huge_media, readOnly: true}
+      {{- end }}
       containers:
         - name: jellyfin
           image: {{ .Values.jellyfin.image }}
