@@ -122,6 +122,8 @@ config:
   # Enable debug logging.
   debug: false
   # API keys clients must present to authenticate against this proxy.
+  # Prefer apiKeysSecret below so keys stay out of values; leave this empty
+  # (or remove it) when using it.
   api-keys: []
   #   - "your-api-key-1"
   remote-management:
@@ -129,3 +131,10 @@ config:
     allow-remote: false
     # Management key. Leave empty to disable the Management API entirely.
     secret-key: ""
+
+# Client API keys from a Secret instead of config."api-keys": one key per
+# line in the given key. An init container appends them to config.yaml.
+# Remove config."api-keys" from the values when using this.
+apiKeysSecret:
+  name: ""
+  key: api-keys

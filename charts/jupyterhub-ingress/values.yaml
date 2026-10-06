@@ -20,10 +20,22 @@ jupyterhub:
       Authenticator:
         admin_users:
           - dan
-      DummyAuthenticator:
-        password: a-shared-secret-password
       JupyterHub:
         authenticator_class: dummy
+    # The shared DummyAuthenticator password comes from a Secret
+    # (jupyterhub-dummy-password, key `password`), not from these values.
+    # Without that Secret the hub doesn't start, rather than running with
+    # no password.
+    extraEnv:
+      DUMMY_AUTH_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: jupyterhub-dummy-password
+            key: password
+    extraConfig:
+      dummyPassword: |
+        import os
+        c.DummyAuthenticator.password = os.environ["DUMMY_AUTH_PASSWORD"]
 
   singleuser:
     # The nvidia.com/gpu limit alone places user pods on visus: the API

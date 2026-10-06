@@ -6,4 +6,9 @@ metadata:
     {{- include "cliproxyapi.labels" . | nindent 4 }}
 data:
   config.yaml: |
+    {{- if .Values.apiKeysSecret.name }}
+    {{- /* api-keys are appended from the Secret by the init container */}}
+    {{- toYaml (omit .Values.config "api-keys") | nindent 4 }}
+    {{- else }}
     {{- toYaml .Values.config | nindent 4 }}
+    {{- end }}
