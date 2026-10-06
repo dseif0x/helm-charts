@@ -51,7 +51,12 @@ spec:
             - {name: PUID,          value: "1000"}
             - {name: PGID,          value: "1000"}
             - {name: DB_CONNECTION, value: "sqlite"}
-            - {name: APP_KEY,       value: "base64:O89XIZSkx9Ha46MO6kUpcyWvZAeZVkrs0RQ+Cs34l3s="}
+            # Laravel app key (encrypts sessions and stored settings).
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ required "appKeySecret.name is required" .Values.appKeySecret.name }}
+                  key: {{ .Values.appKeySecret.key }}
             - {name: SPEEDTEST_SCHEDULE, value: "0 0,12 * * *"}
           ports:
             - {containerPort: 80}

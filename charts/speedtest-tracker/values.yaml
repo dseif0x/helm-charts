@@ -1,2 +1,8 @@
 domain: chart-example.local
 image: lscr.io/linuxserver/speedtest-tracker:1.15.0
+
+# Secret holding the Laravel APP_KEY ("base64:<32 random bytes, base64>"),
+# e.g. from: echo "base64:$(openssl rand -base64 32)"
+appKeySecret:
+  name: ""
+  key: APP_KEY

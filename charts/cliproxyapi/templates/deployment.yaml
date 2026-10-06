@@ -35,6 +35,37 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.apiKeysSecret.name }}
+      # CLIProxyAPI can't read client keys from the environment, so append
+      # `api-keys:` from the Secret to the rendered config before start.
+      initContainers:
+        - name: config
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -eu
+              cp /config-template/config.yaml /config/config.yaml
+              echo "api-keys:" >> /config/config.yaml
+              n=0
+              while IFS= read -r key || [ -n "$key" ]; do
+                [ -n "$key" ] || continue
+                printf '  - "%s"\n' "$key" >> /config/config.yaml
+                n=$((n+1))
+              done < /api-keys/{{ .Values.apiKeysSecret.key }}
+              [ "$n" -gt 0 ] || { echo "no API keys in Secret {{ .Values.apiKeysSecret.name }}" >&2; exit 1; }
+              echo "config.yaml written with $n client API key(s)"
+          volumeMounts:
+            - name: config-template
+              mountPath: /config-template
+            - name: config
+              mountPath: /config
+            - name: api-keys
+              mountPath: /api-keys
+              readOnly: true
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
@@ -68,9 +99,20 @@ spec:
               mountPath: {{ .Values.persistence.mountPath }}
             {{- end }}
       volumes:
+        {{- if .Values.apiKeysSecret.name }}
+        - name: config-template
+          configMap:
+            name: {{ include "cliproxyapi.fullname" . }}
+        - name: config
+          emptyDir: {}
+        - name: api-keys
+          secret:
+            secretName: {{ .Values.apiKeysSecret.name }}
+        {{- else }}
         - name: config
           configMap:
             name: {{ include "cliproxyapi.fullname" . }}
+        {{- end }}
         {{- if .Values.persistence.enabled }}
         - name: data
           persistentVolumeClaim:
