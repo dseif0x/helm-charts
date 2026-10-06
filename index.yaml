@@ -329,6 +329,27 @@ entries:
   cliproxyapi:
   - apiVersion: v2
     appVersion: v7.2.48
+    created: "2026-10-06T22:23:08.274494705Z"
+    description: A Helm chart for CLIProxyAPI - a proxy server exposing OpenAI/Gemini/Claude/Codex-compatible
+      endpoints backed by multiple AI providers
+    digest: f7194263194c739ab74aaed082dc7dbb72d1f16e62ad229e8ee587655be38c85
+    home: https://github.com/router-for-me/CLIProxyAPI
+    keywords:
+    - ai
+    - proxy
+    - openai
+    - gemini
+    - claude
+    - codex
+    name: cliproxyapi
+    sources:
+    - https://github.com/router-for-me/CLIProxyAPI
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/cliproxyapi-0.1.2/cliproxyapi-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: v7.2.48
     created: "2026-10-01T22:16:29.84736587Z"
     description: A Helm chart for CLIProxyAPI - a proxy server exposing OpenAI/Gemini/Claude/Codex-compatible
       endpoints backed by multiple AI providers
@@ -738,6 +759,20 @@ entries:
   jupyterhub-ingress:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-06T22:23:08.430127197Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://hub.jupyter.org/helm-chart/
+      version: 4.4.2
+    description: A Helm chart for Kubernetes
+    digest: 994a86be6fca3c72ae06f78b9a09c9121a9242fc73a44806104bf093c43921ce
+    name: jupyterhub-ingress
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/jupyterhub-ingress-0.1.3/jupyterhub-ingress-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-06T17:52:35.343361983Z"
     dependencies:
     - name: jupyterhub
@@ -1087,6 +1122,16 @@ entries:
   speedtest-tracker:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-06T22:23:08.568089217Z"
+    description: A Helm chart for Kubernetes
+    digest: 3ba08405bb9f023398ab1d80c98d1a6b2407ea159cdf29ca5b8d94bdcd638b09
+    name: speedtest-tracker
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.5/speedtest-tracker-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-06T17:52:35.523762444Z"
     description: A Helm chart for Kubernetes
     digest: 40d65b39dc5f433e402048974dd66ce1405249afa33a8999dde48819c87d98c8
@@ -1218,4 +1263,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-06T19:39:42.489330936Z"
+generated: "2026-10-06T22:23:08.568334546Z"
