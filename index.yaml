@@ -975,6 +975,28 @@ entries:
   openclaw:
   - apiVersion: v2
     appVersion: 2026.9.8
+    created: "2026-10-06T19:32:28.627628186Z"
+    description: A Helm chart for deploying OpenClaw - an open-source AI personal
+      assistant (fork of chrisbattarbee/openclaw-helm 0.1.15, MIT)
+    digest: f64ee7187d6b889d66cd814b720d571037d44eeb1dd146a94205c371479e4707
+    home: https://openclaw.ai
+    keywords:
+    - openclaw
+    - ai
+    - assistant
+    - llm
+    maintainers:
+    - name: Chris
+    name: openclaw
+    sources:
+    - https://github.com/chrisbattarbee/openclaw-helm
+    - https://github.com/openclaw/openclaw
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/openclaw-0.2.1/openclaw-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 2026.9.8
     created: "2026-10-06T19:05:08.187270193Z"
     description: A Helm chart for deploying OpenClaw - an open-source AI personal
       assistant (fork of chrisbattarbee/openclaw-helm 0.1.15, MIT)
@@ -1174,4 +1196,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-06T19:05:08.187407103Z"
+generated: "2026-10-06T19:32:28.627805146Z"
