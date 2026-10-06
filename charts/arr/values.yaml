@@ -1,7 +1,10 @@
 baseDomain: arr.homelab.seifert.id
 
 jellyfin:
-  image: jellyfin/jellyfin:10.11.0-rc3
+  image: jellyfin/jellyfin:12.2
+  # Run `--mode MigrateSystem` in an init container before the server.
+  # Needs Jellyfin >= 12 (the flag doesn't exist before).
+  migrateOnStart: true
   nodeSelector: {}
   resources:
     requests:
