@@ -34,6 +34,35 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
+        # emptyDirs (and nfs-subdir volumes) are created 0777. OpenClaw's
+        # secure temp handling rejects a world-writable ancestor without the
+        # sticky bit, so give /tmp the usual 1777 and make HOME and the data
+        # dir 0755, owned by the app user.
+        - name: init-dirs
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -x
+              chmod 1777 /tmp
+              for d in /home/openclaw /home/openclaw/.openclaw; do
+                chown {{ .Values.securityContext.runAsUser | default 1000 }}:{{ .Values.securityContext.runAsGroup | default 1000 }} "$d"
+                # nfs-subdir creates volume dirs 0777, which the same check rejects.
+                chmod 0755 "$d"
+              done
+              ls -ld /tmp /home/openclaw /home/openclaw/.openclaw
+          securityContext:
+            runAsUser: 0
+            runAsNonRoot: false
+          volumeMounts:
+            - name: home
+              mountPath: /home/openclaw
+            - name: tmp
+              mountPath: /tmp
+            - name: data
+              mountPath: /home/openclaw/.openclaw
         - name: init-config
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
