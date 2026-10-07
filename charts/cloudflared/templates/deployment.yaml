@@ -11,10 +11,22 @@ spec:
       labels:
         pod: cloudflared
     spec:
+      # The image runs as uid 65532; these settings satisfy the Pod Security
+      # `restricted` profile.
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: cloudflared
         image: {{ .Values.image | quote }}
         imagePullPolicy: IfNotPresent
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
         command:
           - cloudflared
           - tunnel
