@@ -78,11 +78,7 @@ spec:
           - {name: nfs, mountPath: /incomplete-downloads, subPath: nzbget/running}
           - {name: config,     mountPath: /config}
         resources:
-          requests:
-            memory: "131Mi"
-            cpu: "100m"
-          limits:
-            memory: "2000Mi"
+          {{- toYaml .Values.sabnzbd.resources | nindent 10 }}
         livenessProbe:
           exec:
             command:
