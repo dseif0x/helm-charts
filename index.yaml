@@ -393,6 +393,16 @@ entries:
   cloudflared:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-07T12:49:14.101765538Z"
+    description: A Helm chart for Kubernetes
+    digest: 6e378522310724c6e2d36343af23023ad03348640866c3fa0045b124d619e729
+    name: cloudflared
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/cloudflared-0.1.4/cloudflared-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-06T17:52:35.154590752Z"
     description: A Helm chart for Kubernetes
     digest: 33d463aadaeb8d51c14cafe994e572f584d662321d15dfaa532f9697127c0fc1
@@ -1257,6 +1267,16 @@ entries:
   zigbee2mqtt:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-07T12:49:14.239756717Z"
+    description: A Helm chart for Kubernetes
+    digest: 9f9dab60194f1d991f00f72d8977a0e3b6d90e6e3d87444b20015eb391044802
+    name: zigbee2mqtt
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.5/zigbee2mqtt-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-07T09:43:55.949120945Z"
     description: A Helm chart for Kubernetes
     digest: 5931b59726779c45c8b545c6ebab3e664184dcd1da22cb12aebbe95738e906ab
@@ -1305,4 +1325,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-07T09:43:55.94923612Z"
+generated: "2026-10-07T12:49:14.240015382Z"
