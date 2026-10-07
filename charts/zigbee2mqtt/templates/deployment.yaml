@@ -40,13 +40,23 @@ spec:
         - name: zigbee2mqtt
           image: {{ .Values.image }}
           imagePullPolicy: IfNotPresent
+          # No privileged mode or hostPath: the coordinator is allocated by
+          # generic-device-plugin (resource below) and appears as
+          # serial.port in the container.
           securityContext:
-            privileged: true
-            capabilities:
-              add: ["SYS_ADMIN"]
+            allowPrivilegeEscalation: false
+          resources:
+            limits:
+              {{ .Values.serial.deviceResource }}: 1
           env:
             - name: TZ
               value: Europe/Berlin
+            # Set explicitly: without /run/udev, adapter auto-detection has
+            # nothing to go on.
+            - name: ZIGBEE2MQTT_CONFIG_SERIAL_PORT
+              value: {{ .Values.serial.port | quote }}
+            - name: ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER
+              value: {{ .Values.serial.adapter | quote }}
           readinessProbe:
             httpGet: {path: /, port: 8080}
             periodSeconds: 10
@@ -66,11 +76,6 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /app/data
-            - name: udev
-              mountPath: /run/udev
-              readOnly: true
-            - name: usb
-              mountPath: /dev/ttyUSB0
           ports:
             - containerPort: 8080
               name: http
@@ -78,14 +83,6 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: zigbee2mqtt-data
-        - name: udev
-          hostPath:
-            path: /run/udev
-            type: Directory
-        - name: usb
-          hostPath:
-            path: /dev/ttyUSB0
-            type: CharDevice
 
 ---
 apiVersion: v1
