@@ -1,0 +1,42 @@
+# Restic backups of PVCs with VolSync (https://volsync.readthedocs.io).
+# Needs the VolSync operator and sealed-secrets in the cluster, and the
+# annotation volsync.backube/privileged-movers: "true" on every namespace
+# listed below (movers run as root so they can read files of any owner and
+# restore ownership).
+
+# Each PVC gets its own restic repository: <base>/<namespace>/<pvc>.
+repository:
+  base: ""          # e.g. s3:https://<account>.r2.cloudflarestorage.com/<bucket>/volsync
+  region: auto      # AWS_DEFAULT_REGION; "auto" for Cloudflare R2
+
+# SealedSecret ciphertexts, sealed with --scope cluster-wide so the same
+# value can be used in every namespace:
+#   echo -n "$VALUE" | kubeseal --raw --scope cluster-wide
+credentials:
+  resticPassword: ""
+  awsAccessKeyId: ""
+  awsSecretAccessKey: ""
+
+# Schedules are staggered: volume i runs at startHour:00 + i*spacingMinutes.
+schedule:
+  startHour: 4
+  spacingMinutes: 2
+
+retain:
+  daily: 7
+  weekly: 4
+  monthly: 6
+pruneIntervalDays: 7
+
+# Restic cache volume per ReplicationSource.
+cache:
+  capacity: 1Gi
+  storageClassName: ""   # cluster default if empty
+
+moverResources: {}
+
+# PVCs to back up. Optional per entry: schedule (cron) overrides the
+# staggered default.
+volumes: []
+#  - namespace: arr
+#    pvc: radarr-config-pvc
