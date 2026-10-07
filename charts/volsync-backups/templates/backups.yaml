@@ -1,0 +1,56 @@
+{{- if .Values.volumes }}
+{{- $base := required "repository.base is required" .Values.repository.base | trimSuffix "/" }}
+{{- $c := .Values.credentials }}
+{{- range $i, $v := .Values.volumes }}
+{{- $name := $v.pvc }}
+{{- $minutes := add (mul $.Values.schedule.startHour 60) (mul $i $.Values.schedule.spacingMinutes) }}
+{{- $schedule := $v.schedule | default (printf "%d %d * * *" (mod $minutes 60) (mod (div $minutes 60) 24)) }}
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: volsync-{{ $name }}
+  namespace: {{ $v.namespace }}
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+spec:
+  encryptedData:
+    RESTIC_PASSWORD: {{ required "credentials.resticPassword is required" $c.resticPassword }}
+    AWS_ACCESS_KEY_ID: {{ required "credentials.awsAccessKeyId is required" $c.awsAccessKeyId }}
+    AWS_SECRET_ACCESS_KEY: {{ required "credentials.awsSecretAccessKey is required" $c.awsSecretAccessKey }}
+  template:
+    metadata:
+      name: volsync-{{ $name }}
+      namespace: {{ $v.namespace }}
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+    type: Opaque
+    data:
+      RESTIC_REPOSITORY: {{ printf "%s/%s/%s" $base $v.namespace $name | quote }}
+      AWS_DEFAULT_REGION: {{ $.Values.repository.region | quote }}
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: {{ $name }}
+  namespace: {{ $v.namespace }}
+spec:
+  sourcePVC: {{ $name }}
+  trigger:
+    schedule: {{ $schedule | quote }}
+  restic:
+    repository: volsync-{{ $name }}
+    copyMethod: Direct
+    pruneIntervalDays: {{ $.Values.pruneIntervalDays }}
+    retain:
+      {{- toYaml $.Values.retain | nindent 6 }}
+    cacheCapacity: {{ $.Values.cache.capacity }}
+    {{- with $.Values.cache.storageClassName }}
+    cacheStorageClassName: {{ . }}
+    {{- end }}
+    {{- with $.Values.moverResources }}
+    moverResources:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+{{- end }}
+{{- end }}
