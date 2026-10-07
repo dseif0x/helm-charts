@@ -1,4 +1,6 @@
 domain: matrix.homelab.seifert.id
+# Extra hostnames (e.g. public ones via the Cloudflare tunnel); rules only, no TLS.
+publicHosts: []
 
 # Synapse runs DB migrations on upgrade: bump deliberately.
 image: matrixdotorg/synapse:v1.162.0

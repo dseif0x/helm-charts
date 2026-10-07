@@ -21,3 +21,16 @@ spec:
                 name: synapse
                 port:
                   name: http
+    {{- /* Public hostnames (Cloudflare tunnel -> Traefik): rules only, no TLS. */}}
+    {{- range .Values.publicHosts }}
+    - host: {{ . | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: synapse
+                port:
+                  name: http
+    {{- end }}

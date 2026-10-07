@@ -1,6 +1,8 @@
 baseDomain: arr.homelab.seifert.id
 
 jellyfin:
+  # Extra hostnames (e.g. public ones via the Cloudflare tunnel); rules only, no TLS.
+  publicHosts: []
   image: jellyfin/jellyfin:12.2
   # Run `--mode MigrateSystem` in an init container before the server.
   # Needs Jellyfin >= 12 (the flag doesn't exist before).
@@ -16,6 +18,8 @@ jellyfin:
       amd.com/gpu: 1
 
 overseerr:
+  # Extra hostnames (e.g. public ones via the Cloudflare tunnel); rules only, no TLS.
+  publicHosts: []
   image: fallenbagel/jellyseerr:latest
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
   nodeSelector:

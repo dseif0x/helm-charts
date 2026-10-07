@@ -62,3 +62,20 @@ spec:
                 name: sonarr
                 port:
                   name: http
+    {{- /* Public hostnames (Cloudflare tunnel -> Traefik). Rules only, not in
+         tls.hosts: cloudflared connects with No TLS Verify and Cloudflare
+         serves the public certificate. */}}
+    {{- range $svc := list "jellyfin" "overseerr" }}
+    {{- range (index $.Values $svc).publicHosts | default list }}
+    - host: {{ . | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $svc }}
+                port:
+                  name: http
+    {{- end }}
+    {{- end }}
