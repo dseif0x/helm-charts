@@ -1221,6 +1221,18 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/trek-0.1.0/trek-0.1.0.tgz
     version: 0.1.0
+  volsync-backups:
+  - apiVersion: v2
+    appVersion: 0.16.0
+    created: "2026-10-07T08:12:42.145101644Z"
+    description: VolSync restic backups for a list of PVCs (one SealedSecret + ReplicationSource
+      per PVC)
+    digest: d9da550e08d5424f66645a5c23799cd0511ace983ec8f1b3fb388dd1b2e71548
+    name: volsync-backups
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/volsync-backups-0.1.0/volsync-backups-0.1.0.tgz
+    version: 0.1.0
   widefrog-download:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -1273,4 +1285,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-07T07:38:58.995058009Z"
+generated: "2026-10-07T08:12:42.145266543Z"
