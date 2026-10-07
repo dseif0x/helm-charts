@@ -138,3 +138,8 @@ config:
 apiKeysSecret:
   name: ""
   key: api-keys
+
+# Extra environment variables for the CLIProxyAPI container, e.g.
+# MANAGEMENT_STATIC_PATH to keep the management-UI asset on the persistent
+# volume when running as non-root (the default is next to config.yaml).
+extraEnv: []
