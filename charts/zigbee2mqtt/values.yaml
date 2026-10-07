@@ -1,2 +1,10 @@
 domain: z2m.homelab.seifert.id
 image: koenkk/zigbee2mqtt:2.6
+
+# Zigbee coordinator. The device is allocated by generic-device-plugin
+# (extended resource below) instead of a privileged hostPath mount.
+serial:
+  deviceResource: devic.es/zigbee
+  port: /dev/ttyUSB0
+  adapter: zstack       # Z-Stack 3.x0 coordinator (auto-detected before)
+
