@@ -8,3 +8,10 @@ serial:
   port: /dev/ttyUSB0
   adapter: zstack       # Z-Stack 3.x0 coordinator (auto-detected before)
 
+# Uses ~100Mi.
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    memory: 256Mi

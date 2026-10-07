@@ -46,7 +46,11 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
           resources:
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
             limits:
+              memory: {{ .Values.resources.limits.memory }}
               {{ .Values.serial.deviceResource }}: 1
           env:
             - name: TZ
