@@ -31,10 +31,24 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      # Run as the synapse user directly instead of letting the entrypoint
+      # start as root and drop privileges (the image supports `--user`; /data
+      # is owned by 991). Satisfies the Pod Security `restricted` profile.
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 991
+        runAsGroup: 991
+        fsGroup: 991
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: synapse
           image: {{ .Values.image }}
           imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
           readinessProbe:
             httpGet: {path: /health, port: 8008}
             periodSeconds: 10
