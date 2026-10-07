@@ -49,6 +49,9 @@ spec:
               value: https://{{ .Values.domain }}
             - name: COMFYUI_URL
               value: https://{{ .Values.domain }}
+            {{- with .Values.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           # The nvidia.com/gpu limit alone places the pod on visus: the API
           # server's ExtendedResourceToleration plugin adds the taint toleration
           # and visus's default runtime is nvidia.

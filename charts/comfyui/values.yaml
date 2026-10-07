@@ -18,3 +18,8 @@ ingress:
   # Additional hosts routed to the same service (no TLS entry is added for
   # them, e.g. public hosts that arrive through a Cloudflare tunnel).
   extraHosts: []
+
+# Extra environment variables for the ComfyUI container.
+extraEnv: []
+#  - name: PIP_NO_CACHE_DIR
+#    value: "1"
