@@ -9,3 +9,8 @@ resources:
     memory: 32Mi
   limits:
     memory: 128Mi
+
+# Transport to the Cloudflare edge: "" = cloudflared default (quic, falls back
+# to http2), "http2" or "quic". QUIC (UDP) can deliver far less than the
+# uplink allows on some connections; http2 (TCP) is the usual fix.
+protocol: ""
