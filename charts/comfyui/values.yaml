@@ -23,3 +23,18 @@ ingress:
 extraEnv: []
 #  - name: PIP_NO_CACHE_DIR
 #    value: "1"
+
+persistence:
+  # The models volume (checkpoints, LoRAs, ...). A PVC's storage class and
+  # access modes are immutable: to move an existing install, set a new name
+  # (a new PVC is created, the old one is kept by helm.sh/resource-policy),
+  # copy the data over, then delete the old PVC.
+  models:
+    # Default: <release>-models-pvc
+    name: ""
+    # Default: the cluster's default storage class. local-path pins the
+    # volume to the node the pod first runs on (fast local disk, no NFS).
+    storageClassName: ""
+    accessModes:
+      - ReadWriteMany
+    size: 100Gi
