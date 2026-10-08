@@ -78,7 +78,7 @@ spec:
             claimName: {{ .Release.Name }}-root-pvc
         - name: models-volume
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-models-pvc
+            claimName: {{ .Values.persistence.models.name | default (printf "%s-models-pvc" .Release.Name) }}
         - name: hf-cache-volume
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-hf-cache-pvc
