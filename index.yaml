@@ -1315,6 +1315,17 @@ entries:
   volsync-backups:
   - apiVersion: v2
     appVersion: 0.16.0
+    created: "2026-10-08T13:19:24.692357206Z"
+    description: VolSync restic backups for a list of PVCs (one SealedSecret + ReplicationSource
+      per PVC)
+    digest: 7a7ab921269947d258a3a87f75bd0b5f491c4258819a05c0f27ee23f23583424
+    name: volsync-backups
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/volsync-backups-0.1.1/volsync-backups-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.16.0
     created: "2026-10-07T08:12:42.145101644Z"
     description: VolSync restic backups for a list of PVCs (one SealedSecret + ReplicationSource
       per PVC)
@@ -1396,4 +1407,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-08T12:10:38.732435635Z"
+generated: "2026-10-08T13:19:24.692473929Z"
