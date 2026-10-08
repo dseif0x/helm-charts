@@ -52,5 +52,9 @@ spec:
     moverResources:
       {{- toYaml . | nindent 6 }}
     {{- end }}
+    {{- with $v.moverSecurityContext }}
+    moverSecurityContext:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
 {{- end }}
 {{- end }}

@@ -2,5 +2,5 @@ apiVersion: v2
 name: volsync-backups
 description: VolSync restic backups for a list of PVCs (one SealedSecret + ReplicationSource per PVC)
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: "0.16.0"
