@@ -1,8 +1,10 @@
 # Restic backups of PVCs with VolSync (https://volsync.readthedocs.io).
-# Needs the VolSync operator and sealed-secrets in the cluster, and the
-# annotation volsync.backube/privileged-movers: "true" on every namespace
-# listed below (movers run as root so they can read files of any owner and
-# restore ownership).
+# Needs the VolSync operator and sealed-secrets in the cluster. Movers run
+# either privileged (namespace annotation volsync.backube/privileged-movers:
+# "true": root, can read files of any owner and restore ownership) or, in
+# namespaces that enforce the restricted Pod Security Standard, unprivileged
+# with a moverSecurityContext matching the workload's uid/gid (per volume
+# below; restricted-compliant, files must be readable by that uid).
 
 # Each PVC gets its own restic repository: <base>/<namespace>/<pvc>.
 repository:
@@ -36,7 +38,17 @@ cache:
 moverResources: {}
 
 # PVCs to back up. Optional per entry: schedule (cron) overrides the
-# staggered default.
+# staggered default; moverSecurityContext (PodSecurityContext) for
+# unprivileged movers.
 volumes: []
 #  - namespace: arr
 #    pvc: radarr-config-pvc
+#  - namespace: mosquitto
+#    pvc: mosquitto-data
+#    moverSecurityContext:
+#      runAsNonRoot: true
+#      runAsUser: 1883
+#      runAsGroup: 1883
+#      fsGroup: 1883
+#      seccompProfile:
+#        type: RuntimeDefault
