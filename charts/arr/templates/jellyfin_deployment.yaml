@@ -1,4 +1,5 @@
 # jellyfin_deployment.yaml
+{{- if .Values.jellyfin.config.createClaim }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -9,6 +10,7 @@ spec:
   resources:
     requests:
       storage: 4Gi
+{{- end }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -85,7 +87,7 @@ spec:
           resources:
             {{- toYaml .Values.jellyfin.resources | nindent 12 }}
       volumes:
-        - {name: config,  persistentVolumeClaim: {claimName: jellyfin-config-pvc}}
+        - {name: config,  persistentVolumeClaim: {claimName: {{ .Values.jellyfin.config.existingClaim | default "jellyfin-config-pvc" }}}}
         - {name: cache,   persistentVolumeClaim: {claimName: jellyfin-cache-pvc}}
         - name: media
           nfs:

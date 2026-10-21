@@ -1,4 +1,5 @@
 # prowlarr_deployment.yaml
+{{- if .Values.prowlarr.config.createClaim }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -7,6 +8,7 @@ spec:
   storageClassName: nfs-fast
   accessModes: [ReadWriteOnce]
   resources: {requests: {storage: 3Gi}}
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -55,7 +57,7 @@ spec:
           resources:
             {{- toYaml .Values.prowlarr.resources | nindent 12 }}
       volumes:
-        - {name: config, persistentVolumeClaim: {claimName: prowlarr-config-pvc}}
+        - {name: config, persistentVolumeClaim: {claimName: {{ .Values.prowlarr.config.existingClaim | default "prowlarr-config-pvc" }}}}
 ---
 apiVersion: v1
 kind: Service

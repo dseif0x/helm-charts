@@ -1,4 +1,5 @@
 # overseerr_deployment.yaml
+{{- if .Values.overseerr.config.createClaim }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -7,6 +8,7 @@ spec:
   accessModes: [ReadWriteOnce]
   resources: {requests: {storage: 3Gi}}
   storageClassName: nfs-fast
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -55,7 +57,7 @@ spec:
           resources:
             {{- toYaml .Values.overseerr.resources | nindent 12 }}
       volumes:
-        - {name: config, persistentVolumeClaim: {claimName: overseerr-config-pvc}}
+        - {name: config, persistentVolumeClaim: {claimName: {{ .Values.overseerr.config.existingClaim | default "overseerr-config-pvc" }}}}
 ---
 apiVersion: v1
 kind: Service
