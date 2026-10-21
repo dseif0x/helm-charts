@@ -1,6 +1,12 @@
 baseDomain: arr.homelab.seifert.id
 
 jellyfin:
+  config:
+    # PVC to mount at /config instead of the chart's jellyfin-config-pvc, e.g. a
+    # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.
+    existingClaim: ""
+    # Create jellyfin-config-pvc (nfs-fast). Keep it while it's the rollback copy.
+    createClaim: true
   image: jellyfin/jellyfin:12.2
   # Run `--mode MigrateSystem` in an init container before the server.
   # Needs Jellyfin >= 12 (the flag doesn't exist before).
@@ -16,6 +22,12 @@ jellyfin:
       amd.com/gpu: 1
 
 overseerr:
+  config:
+    # PVC to mount at /config instead of the chart's overseerr-config-pvc, e.g. a
+    # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.
+    existingClaim: ""
+    # Create overseerr-config-pvc (nfs-fast). Keep it while it's the rollback copy.
+    createClaim: true
   image: fallenbagel/jellyseerr:latest
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
   nodeSelector:
@@ -41,6 +53,12 @@ flaresolverr:
       memory: "744Mi"
 
 prowlarr:
+  config:
+    # PVC to mount at /config instead of the chart's prowlarr-config-pvc, e.g. a
+    # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.
+    existingClaim: ""
+    # Create prowlarr-config-pvc (nfs-fast). Keep it while it's the rollback copy.
+    createClaim: true
   image: lscr.io/linuxserver/prowlarr:2.6.5.5623-ls162
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
   nodeSelector:
@@ -53,6 +71,12 @@ prowlarr:
       memory: "638Mi"
 
 radarr:
+  config:
+    # PVC to mount at /config instead of the chart's radarr-config-pvc, e.g. a
+    # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.
+    existingClaim: ""
+    # Create radarr-config-pvc (nfs-fast). Keep it while it's the rollback copy.
+    createClaim: true
   image: lscr.io/linuxserver/radarr:latest
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
   nodeSelector:
@@ -65,6 +89,12 @@ radarr:
       memory: "450Mi"
 
 sonarr:
+  config:
+    # PVC to mount at /config instead of the chart's sonarr-config-pvc, e.g. a
+    # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.
+    existingClaim: ""
+    # Create sonarr-config-pvc (nfs-fast). Keep it while it's the rollback copy.
+    createClaim: true
   image: lscr.io/linuxserver/sonarr:latest
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
   nodeSelector:

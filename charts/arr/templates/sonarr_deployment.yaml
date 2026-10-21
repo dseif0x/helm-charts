@@ -1,4 +1,5 @@
 # sonarr_deployment.yaml
+{{- if .Values.sonarr.config.createClaim }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -7,6 +8,7 @@ spec:
   storageClassName: nfs-fast
   accessModes: [ReadWriteOnce]
   resources: {requests: {storage: 4Gi}}
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -58,7 +60,7 @@ spec:
           resources:
             {{- toYaml .Values.sonarr.resources | nindent 12 }}
       volumes:
-        - {name: config, persistentVolumeClaim: {claimName: sonarr-config-pvc}}
+        - {name: config, persistentVolumeClaim: {claimName: {{ .Values.sonarr.config.existingClaim | default "sonarr-config-pvc" }}}}
         - name: nfs
           nfs:
             server: cp0.seifert.id
