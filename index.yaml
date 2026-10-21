@@ -586,6 +586,16 @@ entries:
   downloaders:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-21T09:09:31.972962511Z"
+    description: A Helm chart for Kubernetes
+    digest: 7665cfbac933cdffa75e01dc09a81a0ecc6f60366e3686e17d3c7b91b705585f
+    name: downloaders
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/downloaders-0.1.11/downloaders-0.1.11.tgz
+    version: 0.1.11
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-07T07:38:58.994848859Z"
     description: A Helm chart for Kubernetes
     digest: 05b0cec1c41d23cf2959d08ebd5e9ca036187de16b0bef09aa98ccc33e07aeb5
@@ -968,6 +978,16 @@ entries:
   matrix-synapse:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-21T09:09:32.102837761Z"
+    description: A Helm chart for Kubernetes
+    digest: d6ca07f0681af827786461bd006749e9bc18ea319982b3563f7b76c67b9af82c
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/matrix-synapse-0.1.7/matrix-synapse-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-07T22:15:55.986500175Z"
     description: A Helm chart for Kubernetes
     digest: fe5869fdbed0453a4e9bd6a2e37f8fd19478b0504e09349bcda43568559bfde7
@@ -1233,6 +1253,16 @@ entries:
   speedtest-tracker:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-21T09:09:32.381193561Z"
+    description: A Helm chart for Kubernetes
+    digest: 2110a43c9457d50ccd0d0e2078cc107398d01726e1f1f02996564a467b0e7dd7
+    name: speedtest-tracker
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.6/speedtest-tracker-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-06T22:23:08.568089217Z"
     description: A Helm chart for Kubernetes
     digest: 3ba08405bb9f023398ab1d80c98d1a6b2407ea159cdf29ca5b8d94bdcd638b09
@@ -1417,4 +1447,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-21T07:53:45.605462441Z"
+generated: "2026-10-21T09:09:32.381473302Z"
