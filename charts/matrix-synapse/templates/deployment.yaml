@@ -1,3 +1,4 @@
+{{- if .Values.data.createClaim }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -10,6 +11,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -78,7 +80,7 @@ spec:
       volumes:
         - name: synapse-storage
           persistentVolumeClaim:
-            claimName: synapse-data
+            claimName: {{ .Values.data.existingClaim | default "synapse-data" }}
 ---
 apiVersion: v1
 kind: Service
