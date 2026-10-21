@@ -1,3 +1,4 @@
+{{- if .Values.data.createClaim }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -10,6 +11,7 @@ spec:
     requests:
       storage: 256Mi
   storageClassName: nfs-fast
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -86,7 +88,7 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: zigbee2mqtt-data
+            claimName: {{ .Values.data.existingClaim | default "zigbee2mqtt-data" }}
 
 ---
 apiVersion: v1

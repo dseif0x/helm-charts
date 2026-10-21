@@ -15,3 +15,10 @@ resources:
     memory: 128Mi
   limits:
     memory: 256Mi
+
+data:
+  # PVC to mount at /app/data instead of the chart's zigbee2mqtt-data, e.g. a
+  # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.
+  existingClaim: ""
+  # Create zigbee2mqtt-data (nfs-fast). Keep it while it's the rollback copy.
+  createClaim: true
