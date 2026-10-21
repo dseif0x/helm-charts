@@ -6,6 +6,12 @@ gluetun:
   image: qmcgaw/gluetun@sha256:2733bb22b27e3efa7a9f2cef9057ec12791b8b225793fcd3dbfd0508404dfc25
 
 deluge:
+  config:
+    # PVC to mount instead of the chart's deluge-config-pvc, e.g. a copy on
+    # another StorageClass made by migrate-pvc-to-longhorn.sh.
+    existingClaim: ""
+    # Create deluge-config-pvc (nfs-fast). Keep it while it's the rollback copy.
+    createClaim: true
   image: linuxserver/deluge:latest
   nodeSelector: {}
   resources:
