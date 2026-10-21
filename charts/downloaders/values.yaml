@@ -16,6 +16,12 @@ deluge:
       memory: "200Mi"
 
 sabnzbd:
+  config:
+    # PVC to mount instead of the chart's sabnzbd-config-pvc, e.g. a copy on another
+    # StorageClass made by migrate-pvc-to-longhorn.sh.
+    existingClaim: ""
+    # Create sabnzbd-config-pvc (nfs-fast). Keep it while it's the rollback copy.
+    createClaim: true
   image: lscr.io/linuxserver/sabnzbd:5.1.3-ls275
   # par2/unrar are CPU heavy: keep it on x86.
   nodeSelector:

@@ -6,3 +6,9 @@ image: lscr.io/linuxserver/speedtest-tracker:1.15.0
 appKeySecret:
   name: ""
   key: APP_KEY
+config:
+  # PVC to mount instead of the chart's speedtest-tracker-config-pvc, e.g. a copy on another
+  # StorageClass made by migrate-pvc-to-longhorn.sh.
+  existingClaim: ""
+  # Create speedtest-tracker-config-pvc (nfs-fast). Keep it while it's the rollback copy.
+  createClaim: true

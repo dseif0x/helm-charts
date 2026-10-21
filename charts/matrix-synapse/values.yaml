@@ -13,3 +13,9 @@ resources:
 # Latency-sensitive: keep off the Orange Pis.
 nodeSelector:
   kubernetes.io/arch: amd64
+data:
+  # PVC to mount instead of the chart's synapse-data, e.g. a copy on another
+  # StorageClass made by migrate-pvc-to-longhorn.sh.
+  existingClaim: ""
+  # Create synapse-data (nfs-fast). Keep it while it's the rollback copy.
+  createClaim: true

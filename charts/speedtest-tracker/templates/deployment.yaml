@@ -1,4 +1,5 @@
 # speedtest-tracker_deployment.yaml
+{{- if .Values.config.createClaim }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -9,6 +10,7 @@ spec:
   resources:
     requests:
       storage: 2Gi
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -69,7 +71,7 @@ spec:
             limits:
               memory: "408Mi"
       volumes:
-        - {name: config, persistentVolumeClaim: {claimName: speedtest-tracker-config-pvc}}
+        - {name: config, persistentVolumeClaim: {claimName: {{ .Values.config.existingClaim | default "speedtest-tracker-config-pvc" }}}}
 ---
 apiVersion: v1
 kind: Service

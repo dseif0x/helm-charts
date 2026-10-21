@@ -1,3 +1,4 @@
+{{- if .Values.sabnzbd.config.createClaim }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata: {name: sabnzbd-config-pvc}
@@ -5,6 +6,7 @@ spec:
   accessModes: [ReadWriteOnce]
   resources: {requests: {storage: 3Gi}}
   storageClassName: nfs-fast
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -26,7 +28,7 @@ spec:
       {{- end }}
       # All containers in the pod share this network namespace
       volumes:
-        - {name: config, persistentVolumeClaim: {claimName: sabnzbd-config-pvc}}
+        - {name: config, persistentVolumeClaim: {claimName: {{ .Values.sabnzbd.config.existingClaim | default "sabnzbd-config-pvc" }}}}
         - name: nfs
           nfs:
             server: cp0.seifert.id
