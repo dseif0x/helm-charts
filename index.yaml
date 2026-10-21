@@ -586,6 +586,16 @@ entries:
   downloaders:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-21T10:12:35.030413915Z"
+    description: A Helm chart for Kubernetes
+    digest: 449989e5a13e953d52629a661fd615a55ae460a8e6dd29406773c476d6e7e54b
+    name: downloaders
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/downloaders-0.1.12/downloaders-0.1.12.tgz
+    version: 0.1.12
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-21T09:09:31.972962511Z"
     description: A Helm chart for Kubernetes
     digest: 7665cfbac933cdffa75e01dc09a81a0ecc6f60366e3686e17d3c7b91b705585f
@@ -1447,4 +1457,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-21T09:09:32.381473302Z"
+generated: "2026-10-21T10:12:35.030666369Z"
