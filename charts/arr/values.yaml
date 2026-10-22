@@ -11,6 +11,7 @@ jellyfin:
   # Run `--mode MigrateSystem` in an init container before the server.
   # Needs Jellyfin >= 12 (the flag doesn't exist before).
   migrateOnStart: true
+  affinity: {}
   nodeSelector: {}
   resources:
     requests:
@@ -30,6 +31,7 @@ overseerr:
     createClaim: true
   image: fallenbagel/jellyseerr:latest
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  affinity: {}
   nodeSelector:
     kubernetes.io/arch: amd64
   resources:
@@ -43,6 +45,7 @@ overseerr:
 flaresolverr:
   image: ghcr.io/flaresolverr/flaresolverr:v3.5.2
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  affinity: {}
   nodeSelector:
     kubernetes.io/arch: amd64
   resources:
@@ -67,6 +70,7 @@ prowlarr:
     createClaim: true
   image: lscr.io/linuxserver/prowlarr:2.6.5.5623-ls162
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  affinity: {}
   nodeSelector:
     kubernetes.io/arch: amd64
   resources:
@@ -91,6 +95,7 @@ radarr:
     createClaim: true
   image: lscr.io/linuxserver/radarr:latest
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  affinity: {}
   nodeSelector:
     kubernetes.io/arch: amd64
   resources:
@@ -115,6 +120,7 @@ sonarr:
     createClaim: true
   image: lscr.io/linuxserver/sonarr:latest
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
+  affinity: {}
   nodeSelector:
     kubernetes.io/arch: amd64
   resources:
