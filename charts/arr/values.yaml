@@ -53,6 +53,12 @@ flaresolverr:
       memory: "744Mi"
 
 prowlarr:
+  postgres:
+    # CloudNativePG app Secret (keys host, port, username, password). When
+    # set, prowlarr uses PostgreSQL databases mainDb/logDb instead of SQLite.
+    secretName: ""
+    mainDb: prowlarr-main
+    logDb: prowlarr-log
   config:
     # PVC to mount at /config instead of the chart's prowlarr-config-pvc, e.g. a
     # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.
@@ -71,6 +77,12 @@ prowlarr:
       memory: "638Mi"
 
 radarr:
+  postgres:
+    # CloudNativePG app Secret (keys host, port, username, password). When
+    # set, radarr uses PostgreSQL databases mainDb/logDb instead of SQLite.
+    secretName: ""
+    mainDb: radarr-main
+    logDb: radarr-log
   config:
     # PVC to mount at /config instead of the chart's radarr-config-pvc, e.g. a
     # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.
@@ -89,6 +101,12 @@ radarr:
       memory: "450Mi"
 
 sonarr:
+  postgres:
+    # CloudNativePG app Secret (keys host, port, username, password). When
+    # set, sonarr uses PostgreSQL databases mainDb/logDb instead of SQLite.
+    secretName: ""
+    mainDb: sonarr-main
+    logDb: sonarr-log
   config:
     # PVC to mount at /config instead of the chart's sonarr-config-pvc, e.g. a
     # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.

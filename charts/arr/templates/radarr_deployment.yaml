@@ -51,6 +51,17 @@ spec:
             - {name: PUID, value: "1000"}
             - {name: PGID, value: "1000"}
             - {name: TZ,   value: "Europe/Vienna"}
+            {{- with .Values.radarr.postgres }}
+            {{- if .secretName }}
+            # PostgreSQL instead of SQLite (Servarr env overrides for config.xml).
+            - {name: RADARR__POSTGRES__HOST, valueFrom: {secretKeyRef: {name: {{ .secretName }}, key: host}}}
+            - {name: RADARR__POSTGRES__PORT, valueFrom: {secretKeyRef: {name: {{ .secretName }}, key: port}}}
+            - {name: RADARR__POSTGRES__USER, valueFrom: {secretKeyRef: {name: {{ .secretName }}, key: username}}}
+            - {name: RADARR__POSTGRES__PASSWORD, valueFrom: {secretKeyRef: {name: {{ .secretName }}, key: password}}}
+            - {name: RADARR__POSTGRES__MAINDB, value: {{ .mainDb | default "radarr-main" | quote }}}
+            - {name: RADARR__POSTGRES__LOGDB, value: {{ .logDb | default "radarr-log" | quote }}}
+            {{- end }}
+            {{- end }}
           ports: [{containerPort: 7878}]
           volumeMounts:
             - {name: config, mountPath: /config}

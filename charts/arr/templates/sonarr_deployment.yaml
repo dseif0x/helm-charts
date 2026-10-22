@@ -51,6 +51,17 @@ spec:
             - {name: PUID, value: "1000"}
             - {name: PGID, value: "1000"}
             - {name: TZ,   value: "Europe/Vienna"}
+            {{- with .Values.sonarr.postgres }}
+            {{- if .secretName }}
+            # PostgreSQL instead of SQLite (Servarr env overrides for config.xml).
+            - {name: SONARR__POSTGRES__HOST, valueFrom: {secretKeyRef: {name: {{ .secretName }}, key: host}}}
+            - {name: SONARR__POSTGRES__PORT, valueFrom: {secretKeyRef: {name: {{ .secretName }}, key: port}}}
+            - {name: SONARR__POSTGRES__USER, valueFrom: {secretKeyRef: {name: {{ .secretName }}, key: username}}}
+            - {name: SONARR__POSTGRES__PASSWORD, valueFrom: {secretKeyRef: {name: {{ .secretName }}, key: password}}}
+            - {name: SONARR__POSTGRES__MAINDB, value: {{ .mainDb | default "sonarr-main" | quote }}}
+            - {name: SONARR__POSTGRES__LOGDB, value: {{ .logDb | default "sonarr-log" | quote }}}
+            {{- end }}
+            {{- end }}
           ports: [{containerPort: 8989}]
           volumeMounts:
             - {name: config,  mountPath: /config}
