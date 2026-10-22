@@ -43,10 +43,53 @@ spec:
         fsGroup: 991
         seccompProfile:
           type: RuntimeDefault
+      {{- with .Values.database.postgres.secretName }}
+      # Writes the database section from the CloudNativePG app Secret into
+      # its own config file, so the password stays out of homeserver.yaml
+      # and Git. Synapse merges --config-path files; later ones win.
+      initContainers:
+        - name: database-config
+          image: {{ $.Values.image }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          command:
+            - python
+            - -c
+            - |
+              import json, os
+              args = {k: os.environ[e] for k, e in (("user", "PGUSER"), ("password", "PGPASSWORD"), ("dbname", "PGDATABASE"), ("host", "PGHOST"))}
+              args.update(port=int(os.environ["PGPORT"]), cp_min=5, cp_max=10)
+              with open("/db-config/database.yaml", "w") as f:
+                  json.dump({"database": {"name": "psycopg2", "args": args}}, f)
+          env:
+            {{- range $var, $key := dict "PGUSER" "username" "PGPASSWORD" "password" "PGDATABASE" "dbname" "PGHOST" "host" "PGPORT" "port" }}
+            - name: {{ $var }}
+              valueFrom:
+                secretKeyRef: {name: {{ $.Values.database.postgres.secretName }}, key: {{ $key }}}
+            {{- end }}
+          volumeMounts:
+            - name: db-config
+              mountPath: /db-config
+      {{- end }}
       containers:
         - name: synapse
           image: {{ .Values.image }}
           imagePullPolicy: IfNotPresent
+          {{- if .Values.database.postgres.secretName }}
+          # Same as the image's start.py in run mode (already non-root), plus
+          # the generated database config.
+          command:
+            - python
+            - -m
+            - synapse.app.homeserver
+            - --config-path
+            - /data/homeserver.yaml
+            - --config-path
+            - /db-config/database.yaml
+          {{- end }}
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -71,6 +114,11 @@ spec:
           volumeMounts:
             - name: synapse-storage
               mountPath: /data
+            {{- if .Values.database.postgres.secretName }}
+            - name: db-config
+              mountPath: /db-config
+              readOnly: true
+            {{- end }}
           ports:
             - containerPort: 8008
               name: http
@@ -81,6 +129,10 @@ spec:
         - name: synapse-storage
           persistentVolumeClaim:
             claimName: {{ .Values.data.existingClaim | default "synapse-data" }}
+        {{- if .Values.database.postgres.secretName }}
+        - name: db-config
+          emptyDir: {}
+        {{- end }}
 ---
 apiVersion: v1
 kind: Service

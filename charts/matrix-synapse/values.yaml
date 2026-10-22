@@ -19,3 +19,11 @@ data:
   existingClaim: ""
   # Create synapse-data (nfs-fast). Keep it while it's the rollback copy.
   createClaim: true
+
+database:
+  postgres:
+    # Name of a CloudNativePG app Secret (keys username, password, dbname,
+    # host, port). When set, Synapse uses that PostgreSQL database instead of
+    # the database section in /data/homeserver.yaml (SQLite). Port existing
+    # data first with synapse_port_db.
+    secretName: ""
