@@ -26,6 +26,10 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.deluge.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       # All containers in the pod share this network namespace
       volumes:
         - {name: config, persistentVolumeClaim: {claimName: {{ .Values.deluge.config.existingClaim | default "deluge-config-pvc" }}}}

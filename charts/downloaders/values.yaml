@@ -13,6 +13,7 @@ deluge:
     # Create deluge-config-pvc (nfs-fast). Keep it while it's the rollback copy.
     createClaim: true
   image: linuxserver/deluge:latest
+  affinity: {}
   nodeSelector: {}
   resources:
     requests:
@@ -30,6 +31,7 @@ sabnzbd:
     createClaim: true
   image: lscr.io/linuxserver/sabnzbd:5.1.3-ls275
   # par2/unrar are CPU heavy: keep it on x86.
+  affinity: {}
   nodeSelector:
     kubernetes.io/arch: amd64
   resources:
