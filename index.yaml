@@ -988,6 +988,16 @@ entries:
   matrix-synapse:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-22T09:31:57.443177884Z"
+    description: A Helm chart for Kubernetes
+    digest: 4613303db644317a5d0c12f22c1c6e14c36f8b5404c30dd0178376d350be6e1d
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/matrix-synapse-0.1.8/matrix-synapse-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-21T09:09:32.102837761Z"
     description: A Helm chart for Kubernetes
     digest: d6ca07f0681af827786461bd006749e9bc18ea319982b3563f7b76c67b9af82c
@@ -1467,4 +1477,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-21T13:13:13.421295142Z"
+generated: "2026-10-22T09:31:57.443449402Z"
