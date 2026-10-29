@@ -80,13 +80,9 @@ spec:
         ports:
           - containerPort: 8080
         volumeMounts:
-          - {name: nfs, mountPath: /downloads, subPath: nzbget/done}
-          - {name: nfs, mountPath: /incomplete-downloads, subPath: nzbget/running}
           # The whole share once: moves from the download folders into the
           # library are a rename on the NFS server (instant) and hardlinks work.
-          # The subPath mounts above are separate mount points, so a move
-          # between them is a full copy over NFS. They stay until the app's
-          # root folders and download paths point at /data (then removed).
+          # (Separate subPath mounts made every move a full copy over NFS.)
           - {name: nfs, mountPath: /data}
           - {name: config,     mountPath: /config}
         resources:

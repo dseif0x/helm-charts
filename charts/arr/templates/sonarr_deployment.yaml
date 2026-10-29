@@ -69,14 +69,9 @@ spec:
           ports: [{containerPort: 8989}]
           volumeMounts:
             - {name: config,  mountPath: /config}
-            - {name: nfs, mountPath: /downloads, subPath: torrents}
-            - {name: nfs, mountPath: /usenet,   subPath: nzbget/done}
-            - {name: nfs, mountPath: /hdd_huge_shows, subPath: shows}
             # The whole share once: moves from the download folders into the
             # library are a rename on the NFS server (instant) and hardlinks work.
-            # The subPath mounts above are separate mount points, so a move
-            # between them is a full copy over NFS. They stay until the app's
-            # root folders and download paths point at /data (then removed).
+            # (Separate subPath mounts made every move a full copy over NFS.)
             - {name: nfs, mountPath: /data}
           resources:
             {{- toYaml .Values.sonarr.resources | nindent 12 }}
