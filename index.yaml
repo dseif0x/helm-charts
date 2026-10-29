@@ -186,6 +186,16 @@ entries:
   arr:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-29T11:47:11.046776923Z"
+    description: A Helm chart for Kubernetes
+    digest: 00f920afc3bddfad6ef56f4f4b5ed20a297a97b99cbdfb97e559f36fc726cde4
+    name: arr
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.12/arr-0.1.12.tgz
+    version: 0.1.12
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-22T19:42:24.826998286Z"
     description: A Helm chart for Kubernetes
     digest: 0da7f499e530aa93e698335f17e5a1e1eb55ad42ed31cf28ee3a282aaa2a0203
@@ -604,6 +614,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/comfyui-0.1.0/comfyui-0.1.0.tgz
     version: 0.1.0
   downloaders:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-29T11:47:11.16580718Z"
+    description: A Helm chart for Kubernetes
+    digest: 4d1143dbd5d98257678fa1bd0eabf00eedbb48197505645d10bd13f1297b0d87
+    name: downloaders
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/downloaders-0.1.14/downloaders-0.1.14.tgz
+    version: 0.1.14
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-10-22T19:42:25.198953227Z"
@@ -1507,4 +1527,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-22T19:42:25.199275125Z"
+generated: "2026-10-29T11:47:11.166174384Z"
