@@ -53,12 +53,20 @@ spec:
               set -eu
               cp /config-template/config.yaml /config/config.yaml
               echo "api-keys:" >> /config/config.yaml
+              # Every entry of the Secret (one key per line each), so a key
+              # can be added as its own SealedSecret entry without re-sealing
+              # the others. apiKeysSecret.key comes first.
               n=0
-              while IFS= read -r key || [ -n "$key" ]; do
-                [ -n "$key" ] || continue
-                printf '  - "%s"\n' "$key" >> /config/config.yaml
-                n=$((n+1))
-              done < /api-keys/{{ .Values.apiKeysSecret.key }}
+              for f in /api-keys/{{ .Values.apiKeysSecret.key }} /api-keys/*; do
+                [ -f "$f" ] || continue
+                case " ${seen:-} " in *" $f "*) continue ;; esac
+                seen="${seen:-} $f"
+                while IFS= read -r key || [ -n "$key" ]; do
+                  [ -n "$key" ] || continue
+                  printf '  - "%s"\n' "$key" >> /config/config.yaml
+                  n=$((n+1))
+                done < "$f"
+              done
               [ "$n" -gt 0 ] || { echo "no API keys in Secret {{ .Values.apiKeysSecret.name }}" >&2; exit 1; }
               echo "config.yaml written with $n client API key(s)"
           volumeMounts:
