@@ -389,6 +389,27 @@ entries:
   cliproxyapi:
   - apiVersion: v2
     appVersion: v7.2.48
+    created: "2026-10-30T15:24:58.477002451Z"
+    description: A Helm chart for CLIProxyAPI - a proxy server exposing OpenAI/Gemini/Claude/Codex-compatible
+      endpoints backed by multiple AI providers
+    digest: 50461dc2b8672c686a9cd04843bd0a7618c888d9c929ad53e8ea290bfabe58e7
+    home: https://github.com/router-for-me/CLIProxyAPI
+    keywords:
+    - ai
+    - proxy
+    - openai
+    - gemini
+    - claude
+    - codex
+    name: cliproxyapi
+    sources:
+    - https://github.com/router-for-me/CLIProxyAPI
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/cliproxyapi-0.1.4/cliproxyapi-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: v7.2.48
     created: "2026-10-07T22:33:16.402423128Z"
     description: A Helm chart for CLIProxyAPI - a proxy server exposing OpenAI/Gemini/Claude/Codex-compatible
       endpoints backed by multiple AI providers
@@ -1547,4 +1568,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-29T12:54:08.274272742Z"
+generated: "2026-10-30T15:24:58.47719523Z"
