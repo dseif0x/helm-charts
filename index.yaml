@@ -186,6 +186,16 @@ entries:
   arr:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-30T16:17:54.164808356Z"
+    description: A Helm chart for Kubernetes
+    digest: 9a7a7954ed32eae98f6c5616d127a1328cc872d226d4d33940d3581ec0d7f6a6
+    name: arr
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.14/arr-0.1.14.tgz
+    version: 0.1.14
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-29T12:54:08.085226575Z"
     description: A Helm chart for Kubernetes
     digest: bc62f4022d318ea7a17ccb6c9a45b12990e57e7b61b1c498da384f778a4f0b0b
@@ -647,6 +657,16 @@ entries:
   downloaders:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-10-30T16:17:54.336122796Z"
+    description: A Helm chart for Kubernetes
+    digest: 62ad613a4c8b2b653685259c2dc7c8d50b2d5b6c252439a3b7e5cbe8194c0c8c
+    name: downloaders
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/downloaders-0.1.16/downloaders-0.1.16.tgz
+    version: 0.1.16
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-29T12:54:08.273821013Z"
     description: A Helm chart for Kubernetes
     digest: d1bf98d33e2a1abe1f3a7daac3e6a36288eab28c2b2a20773ea79dfe13185e87
@@ -897,6 +917,24 @@ entries:
     version: 0.1.0
   homepage:
   - apiVersion: v2
+    appVersion: v2.7.0
+    created: "2026-10-30T16:17:54.503714841Z"
+    description: homepage helm chart for Kubernetes
+    digest: a364b6744000e31e2b1cb441fb859703af4c5c14048d8d8da23cab055c6c11b8
+    home: https://github.com/gethomepage/homepage
+    icon: https://artifacthub.io/image/e417b561-5fe4-4ee3-9b89-f67df4069169
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - email: ludovic.ortega@adminafk.fr
+      name: Ludovic Ortega
+    name: homepage
+    sources:
+    - https://github.com/M0NsTeRRR/helm-charts/tree/main/charts/homepage
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/homepage-4.2.2/homepage-4.2.2.tgz
+    version: 4.2.2
+  - apiVersion: v2
     appVersion: v2.4.0
     created: "2026-10-06T18:36:39.328505604Z"
     description: homepage helm chart for Kubernetes
@@ -1077,6 +1115,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/librespeedtest-0.1.0/librespeedtest-0.1.0.tgz
     version: 0.1.0
   matrix-synapse:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-10-30T16:17:54.759708288Z"
+    description: A Helm chart for Kubernetes
+    digest: 65d487cb8696dd1e5a4fa3752c6cbfecc80a36c601c8b4ce0bd9326c4de50820
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/matrix-synapse-0.1.9/matrix-synapse-0.1.9.tgz
+    version: 0.1.9
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-10-22T09:31:57.443177884Z"
@@ -1568,4 +1616,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-30T15:24:58.47719523Z"
+generated: "2026-10-30T16:17:54.759850379Z"
