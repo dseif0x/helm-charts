@@ -132,8 +132,10 @@ config:
     # Management key. Leave empty to disable the Management API entirely.
     secret-key: ""
 
-# Client API keys from a Secret instead of config."api-keys": one key per
-# line in the given key. An init container appends them to config.yaml.
+# Client API keys from a Secret instead of config."api-keys", one key per
+# line. Every entry of the Secret is read (`key` first), so further keys can
+# be separate entries (e.g. one per client, sealed on its own). An init
+# container appends them to config.yaml.
 # Remove config."api-keys" from the values when using this.
 apiKeysSecret:
   name: ""
