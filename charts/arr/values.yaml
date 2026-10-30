@@ -7,7 +7,7 @@ jellyfin:
     existingClaim: ""
     # Create jellyfin-config-pvc (nfs-fast). Keep it while it's the rollback copy.
     createClaim: true
-  image: jellyfin/jellyfin:12.2
+  image: jellyfin/jellyfin:12.4
   # Run `--mode MigrateSystem` in an init container before the server.
   # Needs Jellyfin >= 12 (the flag doesn't exist before).
   migrateOnStart: true
@@ -68,7 +68,7 @@ prowlarr:
     existingClaim: ""
     # Create prowlarr-config-pvc (nfs-fast). Keep it while it's the rollback copy.
     createClaim: true
-  image: lscr.io/linuxserver/prowlarr:2.6.5.5623-ls162
+  image: lscr.io/linuxserver/prowlarr:2.7.0.5723-ls166
   # Latency-sensitive web app: slow on the Orange Pis (A55 cores + SQLite over NFS).
   affinity: {}
   nodeSelector:

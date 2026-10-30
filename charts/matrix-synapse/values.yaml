@@ -1,7 +1,7 @@
 domain: matrix.homelab.seifert.id
 
 # Synapse runs DB migrations on upgrade: bump deliberately.
-image: matrixdotorg/synapse:v1.162.0
+image: matrixdotorg/synapse:v1.164.1
 
 resources:
   requests:

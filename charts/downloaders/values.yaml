@@ -29,7 +29,7 @@ sabnzbd:
     existingClaim: ""
     # Create sabnzbd-config-pvc (nfs-fast). Keep it while it's the rollback copy.
     createClaim: true
-  image: lscr.io/linuxserver/sabnzbd:5.1.3-ls275
+  image: lscr.io/linuxserver/sabnzbd:5.1.3-ls279
   # par2/unrar are CPU heavy: keep it on x86.
   affinity: {}
   nodeSelector:
