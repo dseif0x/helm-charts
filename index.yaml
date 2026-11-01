@@ -186,6 +186,16 @@ entries:
   arr:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-01T12:44:37.289577194Z"
+    description: A Helm chart for Kubernetes
+    digest: 4ac2f9d53afec84778e802a6a50ab81eb9aeb2186c92f8353aab723f914738df
+    name: arr
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.15/arr-0.1.15.tgz
+    version: 0.1.15
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-30T16:17:54.164808356Z"
     description: A Helm chart for Kubernetes
     digest: 9a7a7954ed32eae98f6c5616d127a1328cc872d226d4d33940d3581ec0d7f6a6
@@ -576,6 +586,16 @@ entries:
   comfyui:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-01T12:44:37.446079275Z"
+    description: A Helm chart for Kubernetes
+    digest: 7cb9d4565fd81bcf40d279a8e37b02e836278b7aa96833805d3e1dba39aa120a
+    name: comfyui
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/comfyui-0.1.8/comfyui-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-08T12:10:38.732282266Z"
     description: A Helm chart for Kubernetes
     digest: 11a0a055431fb25dbea23e71a4d5d57e1221928834ae480c3021f39cec61c0ca
@@ -655,6 +675,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/comfyui-0.1.0/comfyui-0.1.0.tgz
     version: 0.1.0
   downloaders:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-11-01T12:44:37.657854975Z"
+    description: A Helm chart for Kubernetes
+    digest: c298b61041605c9b4f3b1a6bc676a80bffd1f99b0e189da10f95782e55bd6382
+    name: downloaders
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/downloaders-0.1.17/downloaders-0.1.17.tgz
+    version: 0.1.17
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-10-30T16:17:54.336122796Z"
@@ -1066,6 +1096,16 @@ entries:
   librespeedtest:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-01T12:44:37.805663584Z"
+    description: A Helm chart for Kubernetes
+    digest: b0e982133bd4e3f94508b6f688e8f2938db44557171552a05a5445d592ac8a11
+    name: librespeedtest
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/librespeedtest-0.1.5/librespeedtest-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-03T12:43:35.240020606Z"
     description: A Helm chart for Kubernetes
     digest: 8433dd4533db338e29efc6d205f005c023a1d81cc0c84e4d2f34d4d738874d84
@@ -1115,6 +1155,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/librespeedtest-0.1.0/librespeedtest-0.1.0.tgz
     version: 0.1.0
   matrix-synapse:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-11-01T12:44:37.958097013Z"
+    description: A Helm chart for Kubernetes
+    digest: 2c3c352ffeab6c4f7a903d2f5263f69d1ed3401c61848dc6530ed3ff9cbe9fba
+    name: matrix-synapse
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/matrix-synapse-0.1.10/matrix-synapse-0.1.10.tgz
+    version: 0.1.10
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-10-30T16:17:54.759708288Z"
@@ -1412,6 +1462,16 @@ entries:
   speedtest-tracker:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-01T12:44:38.153197958Z"
+    description: A Helm chart for Kubernetes
+    digest: e0fbf27601eb550b24367f6c5aa995f620bc4e98e0fbcc79e2b757b7095698cc
+    name: speedtest-tracker
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.7/speedtest-tracker-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-21T09:09:32.381193561Z"
     description: A Helm chart for Kubernetes
     digest: 2110a43c9457d50ccd0d0e2078cc107398d01726e1f1f02996564a467b0e7dd7
@@ -1548,6 +1608,16 @@ entries:
   zigbee2mqtt:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-01T12:44:38.340181911Z"
+    description: A Helm chart for Kubernetes
+    digest: 62762d708870fb9a6eabddaf1a990db2be43d96ba728c701b84a6f4b4f7deae8
+    name: zigbee2mqtt
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.7/zigbee2mqtt-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-10-21T13:13:13.420990267Z"
     description: A Helm chart for Kubernetes
     digest: 7e96371c1dc67d2d6e5e32eecdfb0891be9d4f62c16028a947abd2809f0b02f1
@@ -1616,4 +1686,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-30T16:17:54.759850379Z"
+generated: "2026-11-01T12:44:38.340507745Z"
