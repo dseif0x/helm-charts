@@ -1,7 +1,8 @@
 domain: chart-example.local
 
-# The running build of upstream `master` (no matching release tag).
-image: ghcr.io/librespeed/speedtest@sha256:069eb20987d74b501291afaafd795ddbe3f12399ae415aa06972dfcf96950a95
+# The running build of upstream `master` (no matching release tag), PHP 8.5.12
+# (php2shell fixed), built 2026-10-25.
+image: ghcr.io/librespeed/speedtest@sha256:c0b5192262a5cdf8802fd0d0876aa4909789c3db5799b987aeed5515ae0faf16
 
 # Measures throughput between the browser and this pod, so run it on the node
 # with the fastest NIC/CPU (brute) rather than an Orange Pi.
