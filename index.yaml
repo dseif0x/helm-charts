@@ -1096,6 +1096,16 @@ entries:
   librespeedtest:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-01T15:05:06.297288649Z"
+    description: A Helm chart for Kubernetes
+    digest: 3b36e1bc32da0fdbc163f5c3be13648ed7186797377883a7ac16c26a36d51b37
+    name: librespeedtest
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/librespeedtest-0.1.6/librespeedtest-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-11-01T12:44:37.805663584Z"
     description: A Helm chart for Kubernetes
     digest: b0e982133bd4e3f94508b6f688e8f2938db44557171552a05a5445d592ac8a11
@@ -1462,6 +1472,16 @@ entries:
   speedtest-tracker:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-01T15:05:06.539079477Z"
+    description: A Helm chart for Kubernetes
+    digest: f84416e0b371095bfc8774caca926d4e67e9207993dd272c91c762f4ca07a28c
+    name: speedtest-tracker
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.8/speedtest-tracker-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-11-01T12:44:38.153197958Z"
     description: A Helm chart for Kubernetes
     digest: e0fbf27601eb550b24367f6c5aa995f620bc4e98e0fbcc79e2b757b7095698cc
@@ -1686,4 +1706,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-11-01T12:44:38.340507745Z"
+generated: "2026-11-01T15:05:06.539401846Z"
