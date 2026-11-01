@@ -1472,6 +1472,16 @@ entries:
   speedtest-tracker:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-01T15:16:38.13053873Z"
+    description: A Helm chart for Kubernetes
+    digest: 75a10a8b90c49cecec1fb85043dab56a70b7ef057518705d831389eb104b9741
+    name: speedtest-tracker
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/speedtest-tracker-0.1.9/speedtest-tracker-0.1.9.tgz
+    version: 0.1.9
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-11-01T15:05:06.539079477Z"
     description: A Helm chart for Kubernetes
     digest: f84416e0b371095bfc8774caca926d4e67e9207993dd272c91c762f4ca07a28c
@@ -1706,4 +1716,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-11-01T15:05:06.539401846Z"
+generated: "2026-11-01T15:16:38.131013563Z"
