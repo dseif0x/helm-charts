@@ -1,4 +1,5 @@
-baseDomain: dl.homelab.seifert.id
+# Sites at <app>.<baseDomain>, covered by Traefik's wildcard certificate.
+baseDomain: homelab.seifert.id
 
 # VPN sidecar for both download clients. Upstream's `latest` is a dev build
 # with no matching release tag, so this pins the build that has been running.

@@ -4,15 +4,19 @@ metadata:
   name: {{ .Release.Name }}-ingress
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    cert-manager.io/cluster-issuer: letsencrypt-dns
 spec:
+  # No secretName: Traefik serves its default certificate, the
+  # *.homelab.seifert.id wildcard (flux-gitops-repo controllers/homelab-tls),
+  # so the host name doesn't end up in the public CT logs.
   tls:
     - hosts:
-        - "{{ .Values.baseDomain }}"
-        - "*.{{ .Values.baseDomain }}"
-      secretName: {{ .Release.Name }}-cert
+        - jellyfin.{{ .Values.baseDomain }}
+        - seerr.{{ .Values.baseDomain }}
+        - prowlarr.{{ .Values.baseDomain }}
+        - radarr.{{ .Values.baseDomain }}
+        - sonarr.{{ .Values.baseDomain }}
   rules:
-    - host: jelly.{{ .Values.baseDomain }}
+    - host: jellyfin.{{ .Values.baseDomain }}
       http:
         paths:
           - path: /
@@ -22,7 +26,7 @@ spec:
                 name: jellyfin
                 port:
                   name: http
-    - host: overseerr.{{ .Values.baseDomain }}
+    - host: seerr.{{ .Values.baseDomain }}
       http:
         paths:
           - path: /
