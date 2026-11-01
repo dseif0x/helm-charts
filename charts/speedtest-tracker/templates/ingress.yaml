@@ -4,12 +4,13 @@ metadata:
   name: {{ .Release.Name }}-speedtest-tracker-ingress
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    cert-manager.io/cluster-issuer: letsencrypt-dns
 spec:
+  # No secretName: Traefik serves its default certificate, the
+  # *.homelab.seifert.id wildcard (flux-gitops-repo controllers/homelab-tls),
+  # so the host name doesn't end up in the public CT logs.
   tls:
     - hosts:
         - "{{ .Values.domain }}"
-      secretName: speedtest-cert
   rules:
     - host: {{ .Values.domain }}
       http:

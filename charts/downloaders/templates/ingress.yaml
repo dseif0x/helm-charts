@@ -4,13 +4,14 @@ metadata:
   name: {{ .Release.Name }}-ingress
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    cert-manager.io/cluster-issuer: letsencrypt-dns
 spec:
+  # No secretName: Traefik serves its default certificate, the
+  # *.homelab.seifert.id wildcard (flux-gitops-repo controllers/homelab-tls),
+  # so the host name doesn't end up in the public CT logs.
   tls:
     - hosts:
-        - "{{ .Values.baseDomain }}"
-        - "*.{{ .Values.baseDomain }}"
-      secretName: {{ .Release.Name }}-cert
+        - sabnzbd.{{ .Values.baseDomain }}
+        - deluge.{{ .Values.baseDomain }}
   rules:
     - host: sabnzbd.{{ .Values.baseDomain }}
       http:
@@ -22,7 +23,7 @@ spec:
                 name: sabnzbd
                 port:
                   name: http
-    - host: torrent.{{ .Values.baseDomain }}
+    - host: deluge.{{ .Values.baseDomain }}
       http:
         paths:
           - path: /
