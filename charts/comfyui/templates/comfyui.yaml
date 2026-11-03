@@ -20,6 +20,9 @@ spec:
         app: comfyui
     spec:
       terminationGracePeriodSeconds: 0
+      {{- with .Values.priorityClassName }}
+      priorityClassName: {{ . }}
+      {{- end }}
       containers:
         - name: comfyui
           image: {{ .Values.image }}

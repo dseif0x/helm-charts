@@ -38,3 +38,7 @@ persistence:
     accessModes:
       - ReadWriteMany
     size: 100Gi
+
+# priorityClassName of the pod, e.g. so ComfyUI can push a lower-priority
+# workload off a single, non-time-sliced GPU. Empty: the default priority.
+priorityClassName: ""
