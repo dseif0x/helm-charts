@@ -186,6 +186,16 @@ entries:
   arr:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-14T21:22:13.683923289Z"
+    description: A Helm chart for Kubernetes
+    digest: ac9dd0e2f45fc9648770ee3675cbfe6158091249505cfcb8c430ba3fef5aee76
+    name: arr
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/arr-0.1.16/arr-0.1.16.tgz
+    version: 0.1.16
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-11-01T12:44:37.289577194Z"
     description: A Helm chart for Kubernetes
     digest: 4ac2f9d53afec84778e802a6a50ab81eb9aeb2186c92f8353aab723f914738df
@@ -584,6 +594,16 @@ entries:
     - https://github.com/dseif0x/helm-charts/releases/download/cloudflared-0.1.0/cloudflared-0.1.0.tgz
     version: 0.1.0
   comfyui:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-11-14T21:22:13.921391513Z"
+    description: A Helm chart for Kubernetes
+    digest: 7bbbf669dd2c529aea4de944ab458d401ee0721cbb296d2bbfa1bdd97c15b9d0
+    name: comfyui
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/comfyui-0.1.10/comfyui-0.1.10.tgz
+    version: 0.1.10
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2026-11-03T17:30:28.239161492Z"
@@ -1614,6 +1634,17 @@ entries:
   volsync-backups:
   - apiVersion: v2
     appVersion: 0.16.0
+    created: "2026-11-14T21:22:14.042787398Z"
+    description: VolSync restic backups for a list of PVCs (one SealedSecret + ReplicationSource
+      per PVC)
+    digest: 06af27fbdf2f842a8427544ea774226628eafdd5b1c38baf01407b033aa4cc47
+    name: volsync-backups
+    type: application
+    urls:
+    - https://github.com/dseif0x/helm-charts/releases/download/volsync-backups-0.1.2/volsync-backups-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.16.0
     created: "2026-10-08T13:19:24.692357206Z"
     description: VolSync restic backups for a list of PVCs (one SealedSecret + ReplicationSource
       per PVC)
@@ -1726,4 +1757,4 @@ entries:
     urls:
     - https://github.com/dseif0x/helm-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
-generated: "2026-11-03T17:30:28.239383417Z"
+generated: "2026-11-14T21:22:14.043292317Z"
