@@ -48,6 +48,10 @@ spec:
     {{- with $.Values.cache.storageClassName }}
     cacheStorageClassName: {{ . }}
     {{- end }}
+    {{- with $.Values.cache.accessModes }}
+    cacheAccessModes:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
     {{- with $.Values.moverResources }}
     moverResources:
       {{- toYaml . | nindent 6 }}

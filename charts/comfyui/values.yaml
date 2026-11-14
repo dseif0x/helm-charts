@@ -25,6 +25,15 @@ extraEnv: []
 #    value: "1"
 
 persistence:
+  # Use an existing PVC instead of the chart's (nfs-fast) one, e.g. a static
+  # NFS volume. The chart's PVC is then not rendered (the old one stays:
+  # helm.sh/resource-policy keep).
+  root: {existingClaim: ""}
+  input: {existingClaim: ""}
+  output: {existingClaim: ""}
+  workflows: {existingClaim: ""}
+  hfCache: {existingClaim: ""}
+  torchCache: {existingClaim: ""}
   # The models volume (checkpoints, LoRAs, ...). A PVC's storage class and
   # access modes are immutable: to move an existing install, set a new name
   # (a new PVC is created, the old one is kept by helm.sh/resource-policy),

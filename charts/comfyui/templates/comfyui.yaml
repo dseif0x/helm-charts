@@ -78,25 +78,25 @@ spec:
       volumes:
         - name: root-volume
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-root-pvc
+            claimName: {{ .Values.persistence.root.existingClaim | default (printf "%s-root-pvc" .Release.Name) }}
         - name: models-volume
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.models.name | default (printf "%s-models-pvc" .Release.Name) }}
         - name: hf-cache-volume
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-hf-cache-pvc
+            claimName: {{ .Values.persistence.hfCache.existingClaim | default (printf "%s-hf-cache-pvc" .Release.Name) }}
         - name: torch-cache-volume
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-torch-cache-pvc
+            claimName: {{ .Values.persistence.torchCache.existingClaim | default (printf "%s-torch-cache-pvc" .Release.Name) }}
         - name: input-volume
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-input-pvc
+            claimName: {{ .Values.persistence.input.existingClaim | default (printf "%s-input-pvc" .Release.Name) }}
         - name: output-volume
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-output-pvc
+            claimName: {{ .Values.persistence.output.existingClaim | default (printf "%s-output-pvc" .Release.Name) }}
         - name: workflows-volume
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-workflows-pvc
+            claimName: {{ .Values.persistence.workflows.existingClaim | default (printf "%s-workflows-pvc" .Release.Name) }}
 ---
 kind: Service
 apiVersion: v1

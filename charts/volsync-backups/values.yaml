@@ -32,6 +32,10 @@ pruneIntervalDays: 7
 
 # Restic cache volume per ReplicationSource.
 cache:
+  # Access modes of the restic cache PVCs. Empty: VolSync copies the source
+  # PVC's (an RWX source gets an RWX cache). [ReadWriteOnce] keeps every
+  # cache a plain single-node volume.
+  accessModes: []
   capacity: 1Gi
   storageClassName: ""   # cluster default if empty
 

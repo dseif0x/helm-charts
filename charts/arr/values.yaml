@@ -2,6 +2,12 @@
 baseDomain: homelab.seifert.id
 
 jellyfin:
+  # /cache (transcodes, image cache; rebuildable). The PVC's storage class is
+  # immutable: give a new name to move it to another class.
+  cache:
+    name: jellyfin-cache-pvc
+    storageClassName: nfs-fast
+    size: 6Gi
   config:
     # PVC to mount at /config instead of the chart's jellyfin-config-pvc, e.g. a
     # copy on another StorageClass made by migrate-pvc-to-longhorn.sh.
