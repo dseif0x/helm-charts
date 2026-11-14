@@ -11,15 +11,17 @@ spec:
     requests:
       storage: 4Gi
 {{- end }}
+{{- with .Values.jellyfin.cache }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadata: {name: jellyfin-cache-pvc}
+metadata: {name: {{ .name | default "jellyfin-cache-pvc" }}}
 spec:
-  storageClassName: nfs-fast
+  storageClassName: {{ .storageClassName | default "nfs-fast" }}
   accessModes: [ReadWriteOnce]
   resources:
-    requests: {storage: 6Gi}
+    requests: {storage: {{ .size | default "6Gi" }}}
+{{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -92,7 +94,7 @@ spec:
             {{- toYaml .Values.jellyfin.resources | nindent 12 }}
       volumes:
         - {name: config,  persistentVolumeClaim: {claimName: {{ .Values.jellyfin.config.existingClaim | default "jellyfin-config-pvc" }}}}
-        - {name: cache,   persistentVolumeClaim: {claimName: jellyfin-cache-pvc}}
+        - {name: cache,   persistentVolumeClaim: {claimName: {{ .Values.jellyfin.cache.name | default "jellyfin-cache-pvc" }}}}
         - name: media
           nfs:
             server: cp0.seifert.id
