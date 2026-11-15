@@ -38,6 +38,8 @@ cache:
   accessModes: []
   capacity: 1Gi
   storageClassName: ""   # cluster default if empty
+# A volume can override any of these with its own `cache:` (e.g. a node
+# without Longhorn: {storageClassName: local-path}).
 
 moverResources: {}
 

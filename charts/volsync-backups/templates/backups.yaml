@@ -44,11 +44,12 @@ spec:
     pruneIntervalDays: {{ $.Values.pruneIntervalDays }}
     retain:
       {{- toYaml $.Values.retain | nindent 6 }}
-    cacheCapacity: {{ $.Values.cache.capacity }}
-    {{- with $.Values.cache.storageClassName }}
+    {{- $cache := merge (deepCopy ($v.cache | default dict)) $.Values.cache }}
+    cacheCapacity: {{ $cache.capacity }}
+    {{- with $cache.storageClassName }}
     cacheStorageClassName: {{ . }}
     {{- end }}
-    {{- with $.Values.cache.accessModes }}
+    {{- with $cache.accessModes }}
     cacheAccessModes:
       {{- toYaml . | nindent 6 }}
     {{- end }}
