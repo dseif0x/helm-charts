@@ -1,0 +1,97 @@
+{{- if .Values.serial.bridge.enabled }}
+{{- $port := int .Values.serial.bridge.port }}
+# The coordinator stick served on TCP for zigbee2mqtt (serial.bridge).
+# socat serves one connection at a time and is restarted by the loop after
+# each one, so the serial port never has two writers. No TCP probes: a probe
+# would take the single connection slot (and drop the pod from the Service
+# while zigbee2mqtt is connected).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-bridge
+  labels:
+    app: {{ .Release.Name }}-bridge
+spec:
+  strategy:
+    type: Recreate          # the stick can only be held once
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-bridge
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-bridge
+    spec:
+      automountServiceAccountToken: false
+      {{- with .Values.coordinatorNode.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.coordinatorNode.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      terminationGracePeriodSeconds: 5
+      containers:
+        - name: socat
+          image: {{ .Values.serial.bridge.image }}
+          command: ["/bin/sh", "-c"]
+          args:
+            - >-
+              while true; do
+              socat -d -d TCP-LISTEN:{{ $port }},reuseaddr,nodelay
+              FILE:{{ .Values.serial.port }},raw,echo=0,b{{ int .Values.serial.bridge.baudrate }};
+              sleep 1;
+              done
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+          resources:
+            requests:
+              cpu: 10m
+              memory: 8Mi
+            limits:
+              memory: 32Mi
+              {{ .Values.serial.deviceResource }}: 1
+          ports:
+            - containerPort: {{ $port }}
+              name: zigbee
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-bridge
+  labels:
+    app: {{ .Release.Name }}-bridge
+spec:
+  selector:
+    app: {{ .Release.Name }}-bridge
+  ports:
+    - name: zigbee
+      port: {{ $port }}
+      targetPort: zigbee
+  type: ClusterIP
+---
+# Only zigbee2mqtt may talk to the stick.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ .Release.Name }}-bridge
+spec:
+  podSelector:
+    matchLabels:
+      app: {{ .Release.Name }}-bridge
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: zigbee2mqtt
+      ports:
+        - port: {{ $port }}
+          protocol: TCP
+{{- end }}

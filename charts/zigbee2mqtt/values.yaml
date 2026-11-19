@@ -7,6 +7,27 @@ serial:
   deviceResource: devic.es/zigbee
   port: /dev/ttyUSB0
   adapter: zstack       # Z-Stack 3.x0 coordinator (auto-detected before)
+  # Network bridge for the coordinator: a small socat pod on the coordinator's
+  # node (zigbee taint, device resource) serves the stick on TCP, and
+  # zigbee2mqtt connects to it as serial.port tcp://<release>-bridge:<port>.
+  # zigbee2mqtt itself then has no node binding (no device, nodeSelector or
+  # toleration), so its data can live on any StorageClass (e.g. Longhorn).
+  bridge:
+    enabled: false
+    image: alpine/socat:1.8.1.3@sha256:71131702f671a88b3808a70b7330f9679cd9b9933adcafadc191508edfe55bba
+    port: 6638
+    baudrate: 115200    # Z-Stack default (CC2652P sticks)
+
+# Where the pod that holds the coordinator runs (zigbee2mqtt itself, or the
+# bridge when serial.bridge.enabled).
+coordinatorNode:
+  nodeSelector:
+    zigbee: "true"
+  tolerations:
+    - key: "zigbee"
+      operator: "Equal"
+      value: "only"
+      effect: "NoSchedule"
 
 # Uses ~100Mi.
 resources:
